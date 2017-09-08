@@ -95,20 +95,20 @@
 
 
 
-<meta name="description" content="About Git2017/9/8 12:55:41   Introduction当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。 generate ssh-key首">
+<meta name="description" content="About Git2017/9/8 12:55:41   Introduction当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。 Generate ssh-key首">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git">
 <meta property="og:url" content="http://yoursite.com/2017/09/07/git/index.html">
 <meta property="og:site_name" content="Great Dreamer">
-<meta property="og:description" content="About Git2017/9/8 12:55:41   Introduction当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。 generate ssh-key首">
-<meta property="og:image" content="http://yoursite.com/img/GIT/add-ssh-key.png">
-<meta property="og:image" content="http://yoursite.com/img/GIT/create-repos.png">
-<meta property="og:updated_time" content="2017-09-08T05:50:15.759Z">
+<meta property="og:description" content="About Git2017/9/8 12:55:41   Introduction当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。 Generate ssh-key首">
+<meta property="og:image" content="http://yoursite.com/img/GIT/add-ssh-key.PNG">
+<meta property="og:image" content="http://yoursite.com/img/GIT/create-repos.PNG">
+<meta property="og:updated_time" content="2017-09-08T06:25:51.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git">
-<meta name="twitter:description" content="About Git2017/9/8 12:55:41   Introduction当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。 generate ssh-key首">
-<meta name="twitter:image" content="http://yoursite.com/img/GIT/add-ssh-key.png">
+<meta name="twitter:description" content="About Git2017/9/8 12:55:41   Introduction当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。 Generate ssh-key首">
+<meta name="twitter:image" content="http://yoursite.com/img/GIT/add-ssh-key.PNG">
 
 
 
@@ -393,14 +393,14 @@
         <h1 id="About-Git"><a href="#About-Git" class="headerlink" title="About Git"></a>About Git</h1><p>2017/9/8 12:55:41 </p>
 <hr>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。</p>
-<h2 id="generate-ssh-key"><a href="#generate-ssh-key" class="headerlink" title="generate ssh-key"></a>generate ssh-key</h2><p>首先，你要在本地生成一个ssh密钥，然后将其加入到你的代码仓库中，目的就是让代码仓库识别你的合法身份，能让你对代码仓库进行操作。</p>
+<h2 id="Generate-ssh-key"><a href="#Generate-ssh-key" class="headerlink" title="Generate ssh-key"></a>Generate ssh-key</h2><p>首先，你要在本地生成一个ssh密钥，然后将其加入到你的代码仓库中，目的就是让代码仓库识别你的合法身份，能让你对代码仓库进行操作。  </p>
 <ul>
 <li>首先要查看你的本地有没有生成过ssh密钥，可以通过以下命令（以Linux为例）来查看是否有<code>id_rsa.pub</code>和<code>id_rsa</code>两个文件<br><code>$ cat ~/.ssh/id_rsa.pub</code><br><code>$ cat ~/.ssh/id_rsa</code></li>
 <li>如果没有以上两个文件的话，就要生成ssh密钥：<br><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br>然后直接一直回车即可，这样就得到了一个密钥。在用户主目录里找到.ssh目录，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露出去，<code>id_rsa.pub</code>是公钥，可以放心地告诉任何人  </li>
-<li><p>将<code>id_rsa.pub</code>中的内容加到你的代码仓库的密钥。<br><code>$ vim ~/.ssh/id_rsa.pub</code><br>点击下图中的<code>add key</code>，将<code>id_rsa.pub</code>中的内容复制进去（此图来源于bitBucket界面）<br><img src="/img/GIT/add-ssh-key.png" alt="image">  </p>
+<li><p>将<code>id_rsa.pub</code>中的内容加到你的代码仓库的密钥。<br><code>$ vim ~/.ssh/id_rsa.pub</code><br>点击下图中的<code>add key</code>，将<code>id_rsa.pub</code>中的内容复制进去（此图来源于bitBucket界面）<br><img src="/img/GIT/add-ssh-key.PNG" alt="image">  </p>
 <h2 id="Create-a-new-repository"><a href="#Create-a-new-repository" class="headerlink" title="Create a new repository"></a>Create a new repository</h2><p>经过以上的操作，你的本地电脑就可以和远程仓库取得联系了，剩下的事就是要将远程代码仓库和本地仓库进行同步，以便于项目开发。  </p>
 </li>
-<li><p>首先，在代码仓库平台进行新建repository，下图是bitbucket界面（bitbucket允许免费建立private项目），如果在其他平台上有项目也可以直接导入。<br><img src="/img/GIT/create-repos.png" alt="image"> </p>
+<li><p>首先，在代码仓库平台进行新建repository，下图是bitbucket界面（bitbucket允许免费建立private项目），如果在其他平台上有项目也可以直接导入。<br><img src="/img/GIT/create-repos.PNG" alt="image"> </p>
 </li>
 <li>然后将新建的仓库进行clone到本地（本地路径就是将来你的本地代码存放位置）<br><code>$ git clone your-repository-address</code>  </li>
 <li>你新建的项目是空的，你可以直接在本地对应位置下进行代码开发和管理等一系列操作。  <h2 id="Create-and-merge-a-branch"><a href="#Create-and-merge-a-branch" class="headerlink" title="Create and merge a branch"></a>Create and merge a branch</h2></li>
@@ -435,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/07/Research Diary/" rel="next" title="Research Diary">
-                <i class="fa fa-chevron-left"></i> Research Diary
+              <a href="/2017/06/05/my-first-github-pages/" rel="next" title="My First github pages">
+                <i class="fa fa-chevron-left"></i> My First github pages
               </a>
             
           </div>
@@ -445,8 +445,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/07/category-index/" rel="prev" title="index">
-                index <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/07/Research Diary/" rel="prev" title="Research Diary">
+                Research Diary <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-Git"><span class="nav-number">1.</span> <span class="nav-text">About Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generate-ssh-key"><span class="nav-number">1.2.</span> <span class="nav-text">generate ssh-key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-new-repository"><span class="nav-number">1.3.</span> <span class="nav-text">Create a new repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-and-merge-a-branch"><span class="nav-number">1.4.</span> <span class="nav-text">Create and merge a branch</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-Git"><span class="nav-number">1.</span> <span class="nav-text">About Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generate-ssh-key"><span class="nav-number">1.2.</span> <span class="nav-text">Generate ssh-key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-new-repository"><span class="nav-number">1.3.</span> <span class="nav-text">Create a new repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-and-merge-a-branch"><span class="nav-number">1.4.</span> <span class="nav-text">Create and merge a branch</span></a></li></ol></li></ol></div>
             
 
           </div>

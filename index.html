@@ -690,15 +690,38 @@
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>当开发一个大型项目时，尤其是多人开发时，代码的同步和管理显得尤为重要。笔者在进行实际项目开发时，虽然是一个人，但是还会面临着版本控制等问题。当前比较流行的代码仓库有GitHub、gitlab和bitbucket等，其中主要用git来实现代码管理，本文将对主要常用git命令进行介绍。</p>
 <h2 id="Generate-ssh-key"><a href="#Generate-ssh-key" class="headerlink" title="Generate ssh-key"></a>Generate ssh-key</h2><p>首先，你要在本地生成一个ssh密钥，然后将其加入到你的代码仓库中，目的就是让代码仓库识别你的合法身份，能让你对代码仓库进行操作。  </p>
 <ul>
-<li>首先要查看你的本地有没有生成过ssh密钥，可以通过以下命令（以Linux为例）来查看是否有<code>id_rsa.pub</code>和<code>id_rsa</code>两个文件<br><code>$ cat ~/.ssh/id_rsa.pub</code><br><code>$ cat ~/.ssh/id_rsa</code></li>
-<li>如果没有以上两个文件的话，就要生成ssh密钥：<br><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br>然后直接一直回车即可，这样就得到了一个密钥。在用户主目录里找到.ssh目录，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露出去，<code>id_rsa.pub</code>是公钥，可以放心地告诉任何人  </li>
+<li><p>首先要查看你的本地有没有生成过ssh密钥，可以通过以下命令（以Linux为例）来查看是否有<code>id_rsa.pub</code>和<code>id_rsa</code>两个文件<br><code>$ cat ~/.ssh/id_rsa.pub</code><br><code>$ cat ~/.ssh/id_rsa</code>  </p>
+</li>
+<li><p>如果没有以上两个文件的话，就要生成ssh密钥：<br><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br>然后直接一直回车即可，这样就得到了一个密钥。在用户主目录里找到.ssh目录，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露出去，<code>id_rsa.pub</code>是公钥，可以放心地告诉任何人  </p>
+</li>
 <li><p>将<code>id_rsa.pub</code>中的内容加到你的代码仓库的密钥。<br><code>$ vim ~/.ssh/id_rsa.pub</code><br>点击下图中的<code>add key</code>，将<code>id_rsa.pub</code>中的内容复制进去（此图来源于bitBucket界面）<br><img src="/img/GIT/add-ssh-key.PNG" alt="image">  </p>
 <h2 id="Create-a-new-repository"><a href="#Create-a-new-repository" class="headerlink" title="Create a new repository"></a>Create a new repository</h2><p>经过以上的操作，你的本地电脑就可以和远程仓库取得联系了，剩下的事就是要将远程代码仓库和本地仓库进行同步，以便于项目开发。  </p>
 </li>
 <li><p>首先，在代码仓库平台进行新建repository，下图是bitbucket界面（bitbucket允许免费建立private项目），如果在其他平台上有项目也可以直接导入。<br><img src="/img/GIT/create-repos.PNG" alt="image"> </p>
 </li>
-<li>然后将新建的仓库进行clone到本地（本地路径就是将来你的本地代码存放位置）<br><code>$ git clone your-repository-address</code>  </li>
-<li>你新建的项目是空的，你可以直接在本地对应位置下进行代码开发和管理等一系列操作。  <h2 id="Create-and-merge-a-branch"><a href="#Create-and-merge-a-branch" class="headerlink" title="Create and merge a branch"></a>Create and merge a branch</h2></li>
+<li><p>然后将新建的仓库进行clone到本地（本地路径就是将来你的本地代码存放位置）<br><code>$ git clone your-repository-address</code>  </p>
+</li>
+<li><p>你新建的项目是空的，你可以直接在本地对应位置下进行代码开发和管理等一系列操作。  </p>
+<h2 id="Create-and-merge-a-branch"><a href="#Create-and-merge-a-branch" class="headerlink" title="Create and merge a branch"></a>Create and merge a branch</h2><p>代码仓库的一个重要功能就是多人分工协作和版本控制，当小A和小B同时在开发一个项目时，那么两个人都会对整个项目做出修改和贡献，如何记录每个人的工作呢？那么就需要引入分支“branch”的概念。<br>整个项目是有一条主线<code>master</code>（就是主分支）的，每个人在自己的分支下进行工作，当到一定阶段时，就要将自己的修改<code>commit</code>到<code>master</code>上。代码仓库会记载你的分支的工作，也会记录每个人<code>commit</code>的节点。这样，就能按照<code>commit</code>的不同节点来进行版本回退。  </p>
+</li>
+<li><p>首先，创建一个自己的分支<br><code>$ git checkout -b yourBranchName</code>  </p>
+</li>
+</ul>
+<p>以上命令相当于创建分支和切换分支这两条命令的总和<br><code>$ git branch yourBranchName</code><br><code>$ git checkout yourBranchName</code>  </p>
+<ul>
+<li><p>接下来，你就可以在你的分支下进行工作了，你可以使用以下命令来查看当前分支情况<br><code>$ git branch</code><br>比如说打印如下情况，带星号的表示正处于当前分支<br>*guan<br>master  </p>
+</li>
+<li><p>那么剩下的就是你在当前分支下进行各种修改了，当你修改一个文件时，想要把修改保存，可以先将其加入本地缓冲区，运用以下命令：<br><code>$ git add yourFile</code><br>当然你也可以用一个命令将所有文件均加入到缓冲区：<br><code>$ git add .</code>  </p>
+</li>
+<li><p>然后，通过<code>commit</code>到自己的分支上<br><code>$ git commit -m &quot;your comments&quot;</code><br>这里注意的是，<code>-m</code>选项指的是添加注释，这个注释将记录到你所做的改动上，即在此之前你的所有<code>git add</code>的文件上。所以，从这点来看，笔者有两个建议，①一定要写注释，方便记录改动②尽量不要使用<code>git add .</code>来将所有文件都加入到缓冲区，而是只将有所修改的文件加入，不然没有修改的文件也会有这个记录。  </p>
+</li>
+<li><p>当你的把自己的工作<code>commit</code>到自己的分支上，想要将自己的分支合并到<code>master</code>上，需要先切换成<code>master</code>分支，然后在合并。<br><code>$ git branch master</code><br><code>$ git merge --no-ff -m &quot;your comments&quot; yourBranchName</code><br>这里需要强调几点：  </p>
+<ol>
+<li><code>merge</code>只能切换到<code>master</code>上才能执行。</li>
+<li>不经过<code>merge</code>操作，你的分支上的改动是不会显示在<code>master</code>上的。</li>
+<li>记得<code>merge</code>时，要加上<code>--no-ff</code>这个选项，其为no fast forward 的缩写，即会记录你分支上的情况。   </li>
+</ol>
+</li>
 </ul>
 
           

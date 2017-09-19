@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Torch-nn">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/torch-nn/index.html">
+<meta property="og:site_name" content="Great Dreamer">
+<meta property="og:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文">
+<meta property="og:image" content="http://yoursite.com/img/torch/nn/batchNormalization.PNG">
+<meta property="og:updated_time" content="2017-09-15T09:36:13.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Torch-nn">
+<meta name="twitter:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文">
+<meta name="twitter:image" content="http://yoursite.com/img/torch/nn/batchNormalization.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/13/torch-nn/"/>
+
+
+
+
+
+  <title>Torch-nn | Great Dreamer</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Great Dreamer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-eassy">
+          <a href="/categories/eassy" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Eassy
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/category-index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/13/torch-nn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingyang Guan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/people.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Great Dreamer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Torch-nn</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T10:31:36+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Torch/" itemprop="url" rel="index">
+                    <span itemprop="name">Torch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>&emsp;&emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。<code>nn (neural network)</code>这个package是Torch中最核心的神经网络，本文将重点介绍这个package。<br><a href="https://github.com/torch/nn/blob/master/doc/index.md" target="_blank" rel="external">-&gt;更多信息请查看官方英文介绍</a>  </p>
+<h1 id="nn-Module"><a href="#nn-Module" class="headerlink" title="nn-Module"></a>nn-Module</h1><p>&emsp;&emsp;<code>Modules</code>是建造神经网络大厦的砖块。他们本身就是一个神经网络，而且可以使用containers来和别的神经网络结合构成更复杂的网络。  </p>
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><p>&emsp;&emsp;<code>Module</code>是个抽象类，定义了网络结构，它的最重要特点就是串行化的。<code>Module</code>有两个状态变量：output和gradInput。</p>
+<h2 id="Convolution-layers"><a href="#Convolution-layers" class="headerlink" title="Convolution layers"></a>Convolution layers</h2><h3 id="nn-SpatialConvolution"><a href="#nn-SpatialConvolution" class="headerlink" title="nn.SpatialConvolution"></a>nn.SpatialConvolution</h3><p>&emsp;<code>module = nn.SpatialConvolution(nInputPlane, nOutputPlane, kW, kH, [dW], [dH], [padW], [padH])</code></p>
+<p>&emsp;&emsp;这个函数是在图片上做2D的卷积操作，输入的tensor应该是个3D的：<code>(nInputPlane x height x width)</code>。 参数如下：  ]</p>
+<ul>
+<li>nInputPlane: 输入的maps的深度(planes平面的数量)</li>
+<li>nOutputPlane： 该卷积层产生的map的深度（个人觉得可以理解为卷积核的个数）  </li>
+<li>kw: 卷积核的宽度  </li>
+<li>kh: 卷积核的高度  </li>
+<li>dw: 宽度维度下的卷积核的步长（默认为1）</li>
+<li>dh: 高度维度下的卷积核的步长（默认为1）</li>
+<li>padW: 在宽度维度上对输入的planes加0的个数（默认为0，这里（kw-1）/2是最常用的，这个主要是能保证经过卷积之后下一层的宽度能不发生变化，也就是常见的padding操作）  </li>
+<li>padH: 在高度维度上对输入的planes加0的个数（默认为0，同样和padW参数具有相同意义）</li>
+</ul>
+<p>需要指出的是，如果想要查看这一层的参数，可以通过<code>wight</code>和<code>bias</code>得到，两者均为tensor。  </p>
+<h3 id="nn-SpatialBatchNormalization"><a href="#nn-SpatialBatchNormalization" class="headerlink" title="nn.SpatialBatchNormalization"></a>nn.SpatialBatchNormalization</h3><p>&emsp;<code>module = nn.SpatialBatchNormalization(N [,eps] [, momentum] [,affine])</code>  </p>
+<p>&emsp;&emsp;参数介绍如下:  </p>
+<ul>
+<li><strong>N</strong>: number of input feature maps.   </li>
+<li><strong>eps</strong>: eps is a small value added to the standard-deviation to avoid divide-by-zero. (<strong>Defaults to 1e-5</strong>)</li>
+<li><strong>affine</strong>: [boolean] When set to false, the learnable affine transform is disabled. <strong>Defaults to true</strong>.Implements Batch Normalization as described in the paper: <a href="http://serve.3ezy.com/arxiv.org/pdf/1502.03167" target="_blank" rel="external">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a><br><img src="/img/torch/nn/batchNormalization.PNG" alt="image">  </li>
+</ul>
+<h2 id="Simple-layers"><a href="#Simple-layers" class="headerlink" title="Simple layers"></a>Simple layers</h2><h3 id="nn-View"><a href="#nn-View" class="headerlink" title="nn.View"></a>nn.View</h3><p>&emsp;&emsp;<code>module = nn.View(sizes)</code><br>&emsp;&emsp;这个函数主要是改变输入tensor的维度（形状）  </p>
+<h3 id="WhiteNoise"><a href="#WhiteNoise" class="headerlink" title="WhiteNoise"></a>WhiteNoise</h3><p>&emsp;&emsp;<code>module = nn.WhiteNoise([mean, stdev])</code>  </p>
+<p>将等方向的高斯噪声加入到输入中。这个能够在训练<a href="https://arxiv.org/pdf/1507.02672v1.pdf" target="_blank" rel="external"><code>Denoising Autoencoder</code></a>是比较有用的。默认mean和stdev为[0, 0.1]</p>
+<h2 id="Table-layers"><a href="#Table-layers" class="headerlink" title="Table layers"></a>Table layers</h2><h3 id="nn-ConcatTable"><a href="#nn-ConcatTable" class="headerlink" title="nn.ConcatTable"></a>nn.ConcatTable</h3><p>&emsp;&emsp;<code>module = nn.ConcatTable</code><br>&emsp;&emsp;是一个container module，将每个成员module加到一个input里去，然后输出一个table。  </p>
+<h3 id="nn-CMulTable"><a href="#nn-CMulTable" class="headerlink" title="nn.CMulTable"></a>nn.CMulTable</h3><p>&emsp;&emsp;将输入进来的table中的tensor进行对应相乘。<br>例如：</p>
+<pre><code>ii = {torch.ones(5)*2, torch.ones(5)*3, torch.ones(5)*4}  
+m = nn.CMulTable()  
+=m:forward(ii)  
+ 24  
+ 24  
+ 24  
+ 24  
+ 24  
+[torch.DoubleTensor of dimension 5] 
+</code></pre><h2 id="Transfer-Function-Layers"><a href="#Transfer-Function-Layers" class="headerlink" title="Transfer Function Layers"></a>Transfer Function Layers</h2><h3 id="nn-MulConstant"><a href="#nn-MulConstant" class="headerlink" title="nn.MulConstant"></a>nn.MulConstant</h3><p>&emsp;&emsp;<code>f = nn.MulConstant(k[, inplace])</code></p>
+<p>&emsp;&emsp;这个函数主要是让输入的tensor乘上一个常数，这个函数有时候会在debug过程中有用。<br>&emsp;&emsp;可以这样表示：<code>f(x) = k * x</code>  </p>
+<h2 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h2><h3 id="self-apply-function"><a href="#self-apply-function" class="headerlink" title="[self] apply(function)"></a>[self] apply(function)</h3><p>&emsp;&emsp;这个函数主要是对tensor进行赋值（多用于初始化），其中的函数就是赋值函数。例如：  </p>
+<pre><code>i = 0
+z = torch.Tensor(3,3)
+z:apply(function(x)
+  i = i + 1
+  return i
+end) -- fill up the tensor
+&gt; z
+ 1  2  3
+ 4  5  6
+ 7  8  9
+[torch.DoubleTensor of dimension 3x3]  
+</code></pre><h3 id="self-narrow-dim-index-size"><a href="#self-narrow-dim-index-size" class="headerlink" title="[self] narrow(dim, index, size)"></a>[self] narrow(dim, index, size)</h3><p>&emsp;&emsp;这个函数主要是用来截取原tensor的一部分，其中参数<code>dim</code>表示要在哪一维操作，<code>index</code>就是开始截取的位置，<code>size</code>表示要截取的长度。<br>&emsp;&emsp;<strong>注意：这里的截取之后得到的新的tensor中的数据在内存里的位置没变，也就是你修改新的tensor也会修改原tensor对应位置的数据。</strong> 例如：  </p>
+<pre><code>x = torch.Tensor(5, 6):zero()
+&gt; x
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+[torch.DoubleTensor of dimension 5x6]
+
+y = x:narrow(1, 2, 3) -- narrow dimension 1 from index 2 to index 2+3-1
+y:fill(1) -- fill with 1
+&gt; y
+ 1  1  1  1  1  1
+ 1  1  1  1  1  1
+ 1  1  1  1  1  1
+[torch.DoubleTensor of dimension 3x6]
+
+&gt; x -- memory in x has been modified!
+ 0  0  0  0  0  0
+ 1  1  1  1  1  1
+ 1  1  1  1  1  1
+ 1  1  1  1  1  1
+ 0  0  0  0  0  0
+[torch.DoubleTensor of dimension 5x6]
+</code></pre><h2 id="Criterions"><a href="#Criterions" class="headerlink" title="Criterions"></a>Criterions</h2><p>&emsp;&emsp;这个主要提供了损失函数的类型。给定输入和目标，就能计算出损失和梯度。 </p>
+<h3 id="nn-BCECriterion"><a href="#nn-BCECriterion" class="headerlink" title="nn.BCECriterion"></a>nn.BCECriterion</h3><p>&emsp;&emsp;<code>criterion = nn.BCECriterion([weights])</code>  </p>
+<p>计算输出和目标的Binary Cross Entropy，具体来讲：</p>
+<p>&emsp;&emsp;<strong><code>loss(o, t) = - 1/n sum_i (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))</code></strong>   </p>
+<p>当weight有设定时，按照以下公式：  </p>
+<p>&emsp;&emsp;<strong><code>loss(o, t) = - 1/n sum_i weights[i] * (t[i] * log(o[i]) + (1 - t[i]) * log(1 - o[i]))</code></strong>  </p>
+<h3 id="nn-MSECriterion"><a href="#nn-MSECriterion" class="headerlink" title="nn.MSECriterion"></a>nn.MSECriterion</h3><p>&emsp;&emsp;<code>criterion = nn.MSECriterion()</code>  </p>
+<p>计算预测值和目标的差的平方和：  </p>
+<p>&emsp;&emsp;<code>loss(o, t) = 1/n * sum_i ((o[i] - t[i])^2)</code>  </p>
+<p><strong>注：o和t中的size可能不一样，但是包含的元素的个数要一样，如果加上这个限定：<code>criterion.sizeAverage = false</code>，就不会再除以<code>n</code>。</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/10/auto-encoder/" rel="next" title="Auto-encoder">
+                <i class="fa fa-chevron-left"></i> Auto-encoder
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/15/torch-optim/" rel="prev" title="Torch-Optim">
+                Torch-Optim <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/people.jpg"
+              alt="Mingyang Guan" />
+          
+            <p class="site-author-name" itemprop="name">Mingyang Guan</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:guanmingyangtf@126.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nn-Module"><span class="nav-number">2.</span> <span class="nav-text">nn-Module</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-number">2.1.</span> <span class="nav-text">Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-layers"><span class="nav-number">2.2.</span> <span class="nav-text">Convolution layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialConvolution"><span class="nav-number">2.2.1.</span> <span class="nav-text">nn.SpatialConvolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialBatchNormalization"><span class="nav-number">2.2.2.</span> <span class="nav-text">nn.SpatialBatchNormalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-layers"><span class="nav-number">2.3.</span> <span class="nav-text">Simple layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-View"><span class="nav-number">2.3.1.</span> <span class="nav-text">nn.View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WhiteNoise"><span class="nav-number">2.3.2.</span> <span class="nav-text">WhiteNoise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-layers"><span class="nav-number">2.4.</span> <span class="nav-text">Table layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-ConcatTable"><span class="nav-number">2.4.1.</span> <span class="nav-text">nn.ConcatTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-CMulTable"><span class="nav-number">2.4.2.</span> <span class="nav-text">nn.CMulTable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Function-Layers"><span class="nav-number">2.5.</span> <span class="nav-text">Transfer Function Layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-MulConstant"><span class="nav-number">2.5.1.</span> <span class="nav-text">nn.MulConstant</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor"><span class="nav-number">2.6.</span> <span class="nav-text">Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#self-apply-function"><span class="nav-number">2.6.1.</span> <span class="nav-text">[self] apply(function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-narrow-dim-index-size"><span class="nav-number">2.6.2.</span> <span class="nav-text">[self] narrow(dim, index, size)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Criterions"><span class="nav-number">2.7.</span> <span class="nav-text">Criterions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-BCECriterion"><span class="nav-number">2.7.1.</span> <span class="nav-text">nn.BCECriterion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-MSECriterion"><span class="nav-number">2.7.2.</span> <span class="nav-text">nn.MSECriterion</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mingyang Guan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

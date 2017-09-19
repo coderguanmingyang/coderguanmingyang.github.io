@@ -95,12 +95,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Great Dreamer">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+<meta name="description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Torch-Optim">
+<meta property="og:url" content="http://yoursite.com/2017/09/15/torch-optim/index.html">
 <meta property="og:site_name" content="Great Dreamer">
+<meta property="og:description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
+<meta property="og:image" content="http://yoursite.com/img/torch/optim/adam.PNG">
+<meta property="og:updated_time" content="2017-09-15T14:03:18.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Great Dreamer">
+<meta name="twitter:title" content="Torch-Optim">
+<meta name="twitter:description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
+<meta name="twitter:image" content="http://yoursite.com/img/torch/optim/adam.PNG">
 
 
 
@@ -130,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/09/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/15/torch-optim/"/>
 
 
 
 
 
-  <title>Archive | Great Dreamer</title>
+  <title>Torch-Optim | Great Dreamer</title>
   
 
 
@@ -155,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,296 +285,226 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/15/torch-optim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingyang Guan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/people.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Great Dreamer">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Torch-Optim</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-15T10:31:36+08:00">
+                2017-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 9 posts in total. Keep on posting.
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Torch/" itemprop="url" rel="index">
+                    <span itemprop="name">Torch</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/16/lua-table/" itemprop="url">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Lua-table</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-16T10:31:36+08:00"
-              content="2017-09-16" >
-          09-16
-        </time>
-      </div>
+              
 
-    </header>
-  </article>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/15/torch-optim/" itemprop="url">
-              
-                <span itemprop="name">Torch-Optim</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-15T10:31:36+08:00"
-              content="2017-09-15" >
-          09-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>&emsp;&emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。<code>optim</code>这个package是Torch中有关优化训练网络，本文将重点介绍这个package。<br><a href="https://github.com/torch/optim" target="_blank" rel="external">-&gt;更多信息请查看官方英文介绍</a>  </p>
+<p>&emsp;&emsp;大多数最优化算法函数都有以下接口：</p>
+<p>&emsp;&emsp;<code>x*, {f}, ... = optim.method(opfunc, x[, config][, state])</code>  </p>
+<ul>
+<li><strong>opfunc</strong>：用户自定义的闭包，代表了API：<code>f, df/dx = func(x)</code> 。通俗来讲，这个函数要能返回loss、还有loss对权重参数weight的导数。 </li>
+<li><strong>x</strong>： 当前的参数向量（1-D）。  </li>
+<li><strong>config</strong>： 参数table，依据算法而不同。  </li>
+<li><strong>state</strong>：状态变量table，如果为空，<code>config</code>将会包括状态。  </li>
+<li><strong>x*</strong>： 新的参数向量（经过最小化loss：f）。  </li>
+<li><strong>{f}</strong>： <code>f</code>值的table，顺序按照计算的顺序。  </li>
+</ul>
+<p>例如：</p>
+<pre><code>config = {
+   learningRate = 1e-3,
+   momentum = 0.5
+}
 
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/13/torch-nn/" itemprop="url">
-              
-                <span itemprop="name">Torch-nn</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-13T10:31:36+08:00"
-              content="2017-09-13" >
-          09-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+for i, sample in ipairs(training_samples) do
+    local func = function(x)
+       -- define eval function
+       return f, df_dx
+    end
+    optim.sgd(func, x, config)
+end
+</code></pre><h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="optim-adam-opfunc-x-config-state"><a href="#optim-adam-opfunc-x-config-state" class="headerlink" title="optim.adam(opfunc, x[, config][, state])"></a>optim.adam(opfunc, x[, config][, state])</h2><p>&emsp;&emsp;Adam(Adaptive Moment Estimation)本质上是带有动量项的RMSprop，它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。参数介绍：  </p>
+<ul>
+<li><strong>config</strong>: a table with configuration parameters for the optimizer</li>
+<li><strong>config.learningRate</strong>: learning rate</li>
+<li><strong>config.learningRateDecay</strong>: learning rate decay</li>
+<li><strong>config.weightDecay</strong>: weight decay coefficient for regularization</li>
+<li><strong>config.beta1</strong>: first moment coefficient</li>
+<li><strong>config.beta2</strong>: second moment coefficient</li>
+<li><strong>config.epsilon</strong>: for numerical stability</li>
+</ul>
+<p>具体计算过程如以下公式：<br>&emsp;&emsp;&gt;&gt;&gt; g表示计算的梯度，数值稳定量δ，一阶动量衰减系数ρ1, 二阶动量衰减系数ρ2。其中几个取值一般为：<code>δ=10−8,ρ1=0.9,ρ2=0.999</code><br>&emsp;&emsp;&gt;&gt;&gt; 中间变量s和r都初始化为0。   </p>
+<p><img src="/img/torch/optim/adam.PNG" alt="image"></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/10/auto-encoder/" itemprop="url">
-              
-                <span itemprop="name">Auto-encoder</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-10T16:31:07+08:00"
-              content="2017-09-10" >
-          09-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/07/category-index/" itemprop="url">
-              
-                <span itemprop="name">index</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-07T16:22:20+08:00"
-              content="2017-09-07" >
-          09-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/07/Research Diary/" itemprop="url">
-              
-                <span itemprop="name">Research Diary</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-07T15:05:23+08:00"
-              content="2017-09-07" >
-          09-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/07/git/" itemprop="url">
-              
-                <span itemprop="name">Git</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-07T15:05:23+08:00"
-              content="2017-09-07" >
-          09-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/torch-nn/" rel="next" title="Torch-nn">
+                <i class="fa fa-chevron-left"></i> Torch-nn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/16/lua-table/" rel="prev" title="Lua-table">
+                Lua-table <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -576,6 +512,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -596,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -676,6 +625,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimization-algorithms"><span class="nav-number">2.</span> <span class="nav-text">Optimization algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#optim-adam-opfunc-x-config-state"><span class="nav-number">2.1.</span> <span class="nav-text">optim.adam(opfunc, x[, config][, state])</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -823,6 +788,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 

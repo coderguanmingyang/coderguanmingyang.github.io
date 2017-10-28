@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Great Dreamer">
 <meta property="og:description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
 <meta property="og:image" content="http://yoursite.com/img/torch/optim/adam.PNG">
-<meta property="og:updated_time" content="2017-09-15T14:03:18.907Z">
+<meta property="og:updated_time" content="2017-10-12T06:42:25.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Torch-Optim">
 <meta name="twitter:description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
@@ -447,7 +447,27 @@ end
 <li><strong>config.epsilon</strong>: for numerical stability</li>
 </ul>
 <p>具体计算过程如以下公式：<br>&emsp;&emsp;&gt;&gt;&gt; g表示计算的梯度，数值稳定量δ，一阶动量衰减系数ρ1, 二阶动量衰减系数ρ2。其中几个取值一般为：<code>δ=10−8,ρ1=0.9,ρ2=0.999</code><br>&emsp;&emsp;&gt;&gt;&gt; 中间变量s和r都初始化为0。   </p>
-<p><img src="/img/torch/optim/adam.PNG" alt="image"></p>
+<p><img src="/img/torch/optim/adam.PNG" alt="image">  </p>
+<h1 id="Logger"><a href="#Logger" class="headerlink" title="Logger"></a>Logger</h1><p>在训练和测试过程中实时地记录网络的正确率和损失函数是非常有必要的。<br>初始化一个logger:</p>
+<p><code>logger = optim.Logger(&#39;accuracy.log&#39;)</code>  </p>
+<p>然后设置要记录些什么, 比如说训练的正确率和测试的正确率：  </p>
+<p><code>logger:setNames{&#39;Training acc.&#39;, &#39;Test acc.&#39;}</code>  </p>
+<p>然后再每次迭代过程中将结果记录在logger：  </p>
+<pre><code>trainAcc = ......
+testAcc = ......
+logger:add{trainAcc, testAcc}  
+</code></pre><p>记录完之后，我们想要看看最后的结果，画出一条曲线，首先要定义曲线的style：  </p>
+<pre><code>. for dots
++ for points
+- for lines
++- for points and lines
+~ for using smoothed lines with cubic interpolation
+| for using boxes
+custom string, one can also pass custom strings to use full capability of gnuplot 
+</code></pre><p>例如将曲线均定义为节点折线图：  </p>
+<p><code>logger:style{&#39;+-&#39;, &#39;+-&#39;}</code></p>
+<p>然后画出：  </p>
+<p><code>logger:plot()</code></p>
 
       
     </div>
@@ -472,8 +492,8 @@ end
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/torch-nn-transferFun/" rel="next" title="Torch-nn-Transfer function">
-                <i class="fa fa-chevron-left"></i> Torch-nn-Transfer function
+              <a href="/2017/09/13/torch-nn/" rel="next" title="Torch-nn">
+                <i class="fa fa-chevron-left"></i> Torch-nn
               </a>
             
           </div>
@@ -482,8 +502,8 @@ end
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/16/kiter/" rel="prev" title="他不是我的朋友!">
-                他不是我的朋友! <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/16/lua-table/" rel="prev" title="Lua-table">
+                Lua-table <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +584,7 @@ end
             
               <a href="/archives">
             
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -635,7 +655,7 @@ end
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimization-algorithms"><span class="nav-number">2.</span> <span class="nav-text">Optimization algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#optim-adam-opfunc-x-config-state"><span class="nav-number">2.1.</span> <span class="nav-text">optim.adam(opfunc, x[, config][, state])</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimization-algorithms"><span class="nav-number">2.</span> <span class="nav-text">Optimization algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#optim-adam-opfunc-x-config-state"><span class="nav-number">2.1.</span> <span class="nav-text">optim.adam(opfunc, x[, config][, state])</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logger"><span class="nav-number">3.</span> <span class="nav-text">Logger</span></a></li></ol></div>
             
 
           </div>

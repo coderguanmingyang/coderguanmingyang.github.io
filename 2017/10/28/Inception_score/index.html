@@ -95,22 +95,16 @@
 
 
 
-<meta name="description" content="by Mingyang Guan2017/9/28 18:46:17   menu  About train trick   Improved techniques for training GANs    About train trick   Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networ">
+<meta name="description" content="title: Inception Scorescategories: GANdate: 2017-10-28 10:31:36 tags:introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques fo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GAN papers notes">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/GANs/index.html">
+<meta property="og:title" content="Great Dreamer">
+<meta property="og:url" content="http://yoursite.com/2017/10/28/Inception_score/index.html">
 <meta property="og:site_name" content="Great Dreamer">
-<meta property="og:description" content="by Mingyang Guan2017/9/28 18:46:17   menu  About train trick   Improved techniques for training GANs    About train trick   Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networ">
-<meta property="og:image" content="http://yoursite.com/img/GAN/improveGAN-fig1.PNG">
-<meta property="og:image" content="http://yoursite.com/img/GAN/appendix.PNG">
-<meta property="og:image" content="http://yoursite.com/img/GAN/LAPGAN-FIG3.PNG">
-<meta property="og:image" content="http://yoursite.com/img/GAN/LAPGAN-FIG4.PNG">
-<meta property="og:image" content="http://yoursite.com/img/GAN/LAPGAN-FIG5.PNG">
-<meta property="og:updated_time" content="2017-10-22T13:18:24.964Z">
+<meta property="og:description" content="title: Inception Scorescategories: GANdate: 2017-10-28 10:31:36 tags:introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques fo">
+<meta property="og:updated_time" content="2017-10-28T07:10:18.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GAN papers notes">
-<meta name="twitter:description" content="by Mingyang Guan2017/9/28 18:46:17   menu  About train trick   Improved techniques for training GANs    About train trick   Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networ">
-<meta name="twitter:image" content="http://yoursite.com/img/GAN/improveGAN-fig1.PNG">
+<meta name="twitter:title" content="Great Dreamer">
+<meta name="twitter:description" content="title: Inception Scorescategories: GANdate: 2017-10-28 10:31:36 tags:introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques fo">
 
 
 
@@ -140,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/09/GANs/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/28/Inception_score/"/>
 
 
 
 
 
-  <title>GAN papers notes | Great Dreamer</title>
+  <title> | Great Dreamer</title>
   
 
 
@@ -303,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/GANs/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/Inception_score/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mingyang Guan">
@@ -320,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GAN papers notes</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -332,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-09T10:31:36+08:00">
-                2017-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T14:17:13+08:00">
+                2017-10-28
               </time>
             
 
@@ -342,28 +336,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/GAN/" itemprop="url" rel="index">
-                    <span itemprop="name">GAN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -416,41 +388,47 @@
       
 
       
-        <p><strong>by Mingyang Guan</strong><br><strong>2017/9/28 18:46:17</strong>  </p>
-<h1 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h1><ol>
-<li><a href="#trick"> About train trick</a>  <ul>
-<li><a href="#trick1">Improved techniques for training GANs</a></li>
-</ul>
-</li>
-<li><a href="#model"> About train trick</a>  <ul>
-<li><a href="#model1">Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks</a>  </li>
-</ul>
-</li>
-</ol>
-<h2 id="About-train-trick"><a href="#About-train-trick" class="headerlink" title=" About train trick "></a><span id="trick"> About train trick </span></h2><h3 id="Improved-techniques-for-training-GANs"><a href="#Improved-techniques-for-training-GANs" class="headerlink" title=" Improved techniques for training GANs "></a><span id="trick1"> <a href="https://arxiv.org/abs/1606.03498" target="_blank" rel="external">Improved techniques for training GANs</a> </span></h3><h4 id="3-Toward-Convergent-GAN-Training-面向GAN训练的收敛"><a href="#3-Toward-Convergent-GAN-Training-面向GAN训练的收敛" class="headerlink" title="3.Toward Convergent GAN Training(面向GAN训练的收敛)"></a>3.Toward Convergent GAN Training(面向GAN训练的收敛)</h4><p>达到纳什均衡比较困难，采用梯度下降，当改变G的参数使G的loss减小的时候，同时D的loss会增加，当改变D的参数使D的loss减小时，G的loss会增加，此消彼长。本节介绍了一些启发式的收敛技术：  </p>
-<ol>
-<li><p>Feature matching(特征匹配)<br>&emsp;&emsp;feature matching主要通过用一个新的generator的目标函数。以往的目标函数是直接最大化判别器的输出，新的目标函数是让生成器去拟合真实数据的分布。具体来讲，就是训练生成器使得生成器生成的数据能够更match判别器中间层的feature maps。假定<em>f</em>(<em>x</em>)代表判别器网络的某一中间层feature map，那么生成器的目标函数就是：<br><img src="/img/GAN/improveGAN-fig1.PNG" alt="image"><br>作者说虽然在实践中不能保证一定会到达纳什平衡点，但是对于传统GAN来说是比较有效的。  </p>
-</li>
-<li><p>Minibatch discrimination  </p>
-</li>
-</ol>
-<h4 id="4-Assessment-of-image-quality"><a href="#4-Assessment-of-image-quality" class="headerlink" title="4.Assessment of image quality"></a>4.Assessment of image quality</h4><p>&emsp;&emsp;GAN一直缺少一个目标函数，这使得评价不同模型表现非常困难。现有的一个方法就是让人类去标注（是真实图片，还是生成图片），文章作者也开发了一个<a href="http://infinite-chamber-35121.herokuapp.com/cifar-minibatch/" target="_blank" rel="external">标注系统</a>.依靠人类来识别有很大弱点，作者发现当给标注者识别错误的反馈以后，标注者会更加容易的识别出生成图片的瑕疵，进而认出是生成图片。  </p>
-<p>&emsp;&emsp;鉴于此，本文作者提出了一个评价GAN模型的方法：inception model。</p>
-<h2 id="About-model"><a href="#About-model" class="headerlink" title=" About model"></a><span id="model"> About model</span></h2><h3 id="Deep-Generative-Image-Models-using-a-Laplacian-Pyramid-of-Adversarial-Networks-LAPGAN"><a href="#Deep-Generative-Image-Models-using-a-Laplacian-Pyramid-of-Adversarial-Networks-LAPGAN" class="headerlink" title="Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks:LAPGAN"></a><span id="model1"><a href="https://arxiv.org/pdf/1506.05751.pdf" target="_blank" rel="external">Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks:LAPGAN</a></span></h3><p> <strong>3.model architecture and training</strong><br>应用到了三个数据集：①CIFAR-10②STL-10③LSUN<br>噪声z均来源于[-1, 1]的均匀分布  </p>
-<ol>
-<li><strong>CIFAR-10 and STL-10</strong><br>都是从8×8分辨率开始，对于cifar-10来说，还有8-&gt;14和14-&gt;28这两层（cifar-10数据集原始图片为32×32，将其进行切割，得到四个28×28的crops，来扩充数据集）。<br>对于STL-10来说，有8-&gt;16-&gt;32-&gt;64-&gt;96这四层。对于cifar-10数据集，还探索了加入类别标签的版本（即双条件）</li>
-<li><p><strong>LSUN</strong><br>开始从4×4开始，然后有4 -&gt; 8 -&gt; 16 -&gt; 32 -&gt; 64这四个层。G网络和D网络均由更多的卷积层构成。  </p>
-<p><strong>4.Experiments</strong><br>文章中采用了三种方法来评价模型：①计算对数似然②采样并画出图像③人类对比    </p>
-</li>
-<li><p><strong>Evaluation of Log-Likelihood</strong><br>对于生成式模型来讲，一般采用对数似然估计方法来评估模型好坏。但是对于原始GAN来讲，并不能直接计算图片的概率。goodfellow等人提出了用Gaussian<br>Parzen window的方法来估计对数似然。本文也采用了这种方法。具体细节如下：  </p>
-</li>
-</ol>
-<p><img src="/img/GAN/appendix.PNG" alt="image"></p>
-<ol>
-<li><strong>model samples</strong><br>下图显示了在cifar-10上的结果，最右边一列均是和左边最接近的图片（用2范式距离衡量每个像素）。从图中只管看出来CC-LAPGAN更加的清晰和锐利，比LAPGAN和原始GAN都要好。<br><img src="/img/GAN/LAPGAN-FIG3.PNG" alt="image">  </li>
-</ol>
-<p>下图a表示的是在数据集stl上的结果，b展示的是生成链。<br><img src="/img/GAN/LAPGAN-FIG4.PNG" alt="image">  </p>
-<p>下图展示的是在lsun数据集上的结果。开始为4×4（最左边那列），然后是10个不同的采样（64×64）,展示了模型已经捕捉到了图像long-range structure。<br><img src="/img/GAN/LAPGAN-FIG5.PNG" alt="image">  </p>
+        <hr>
+<p>title: Inception Scores<br>categories: GAN<br>date: 2017-10-28 10:31:36</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><p>&emsp;&emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在<a href="https://arxiv.org/abs/1606.03498" target="_blank" rel="external">Improved Techniques for training GANs</a>这篇文章里提出，本篇文章主要将分析其计算原理和源代码。（<a href="https://github.com/openai/improved-gan" target="_blank" rel="external">源代码链接</a>）  </p>
+<h2 id="源代码分析"><a href="#源代码分析" class="headerlink" title="源代码分析"></a>源代码分析</h2><!--segmentfault-->
+<p><link rel="stylesheet" href="https://sf-static.b0.upaiyun.com/v-576b52d9/3rd/highlightjs/styles/solarized_light.css"></p>
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js">        </script>  
+<script>hljs.initHighlightingOnLoad();</script>
+
+<p>&lt;?php</p>
+<pre><code># Call this function with list of images. Each of elements should be a 
+# numpy array with values ranging from 0 to 255.
+def get_inception_score(images, splits=10):
+  assert(type(images) == list)
+  assert(type(images[0]) == np.ndarray)
+  assert(len(images[0].shape) == 3)
+  assert(np.max(images[0]) &gt; 10)
+  assert(np.min(images[0]) &gt;= 0.0)
+  inps = []
+  for img in images:
+    img = img.astype(np.float32)
+    inps.append(np.expand_dims(img, 0))
+  bs = 100
+  with tf.Session() as sess:
+    preds = []
+    n_batches = int(math.ceil(float(len(inps)) / float(bs)))
+    for i in range(n_batches):
+        sys.stdout.write(&quot;.&quot;)
+        sys.stdout.flush()
+        inp = inps[(i * bs):min((i + 1) * bs, len(inps))]
+        inp = np.concatenate(inp, 0)
+        pred = sess.run(softmax, {&apos;ExpandDims:0&apos;: inp})
+        preds.append(pred)
+    preds = np.concatenate(preds, 0)
+    scores = []
+    for i in range(splits):
+      part = preds[(i * preds.shape[0] // splits):((i + 1) * preds.shape[0] // splits), :]
+      kl = part * (np.log(part) - np.log(np.expand_dims(np.mean(part, 0), 0)))
+      kl = np.mean(np.sum(kl, 1))
+      scores.append(np.exp(kl))
+    return np.mean(scores), np.std(scores)
+</code></pre><p>?&gt;</p>
 
       
     </div>
@@ -475,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/16/kiter/" rel="next" title="他不是我的朋友!">
-                <i class="fa fa-chevron-left"></i> 他不是我的朋友!
+              <a href="/2017/10/12/parzen-window/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -484,10 +462,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/12/parzen-window/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -638,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#menu"><span class="nav-number">1.</span> <span class="nav-text">menu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-train-trick"><span class="nav-number">1.1.</span> <span class="nav-text"> About train trick </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Improved-techniques-for-training-GANs"><span class="nav-number">1.1.1.</span> <span class="nav-text"> Improved techniques for training GANs </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Toward-Convergent-GAN-Training-面向GAN训练的收敛"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">3.Toward Convergent GAN Training(面向GAN训练的收敛)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Assessment-of-image-quality"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">4.Assessment of image quality</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-model"><span class="nav-number">1.2.</span> <span class="nav-text"> About model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Generative-Image-Models-using-a-Laplacian-Pyramid-of-Adversarial-Networks-LAPGAN"><span class="nav-number">1.2.1.</span> <span class="nav-text">Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks:LAPGAN</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags"><span class="nav-number">1.</span> <span class="nav-text">tags:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码分析"><span class="nav-number">3.</span> <span class="nav-text">源代码分析</span></a></li></ol></div>
             
 
           </div>

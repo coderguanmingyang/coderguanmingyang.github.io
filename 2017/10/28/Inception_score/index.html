@@ -95,16 +95,19 @@
 
 
 
-<meta name="description" content="title: Inception Scorescategories: GAN date: 2017-10-28 10:31:36introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques for tra">
+<meta name="description" content="title: Inception Scorescategories: GAN date: 2017-10-28 10:31:36Introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques for tra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Great Dreamer">
 <meta property="og:url" content="http://yoursite.com/2017/10/28/Inception_score/index.html">
 <meta property="og:site_name" content="Great Dreamer">
-<meta property="og:description" content="title: Inception Scorescategories: GAN date: 2017-10-28 10:31:36introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques for tra">
-<meta property="og:updated_time" content="2017-10-28T07:24:06.066Z">
+<meta property="og:description" content="title: Inception Scorescategories: GAN date: 2017-10-28 10:31:36Introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques for tra">
+<meta property="og:image" content="http://yoursite.com/img/GAN/inception-fig1.PNG">
+<meta property="og:image" content="http://yoursite.com/img/GAN/inception-fig2.PNG">
+<meta property="og:updated_time" content="2017-10-28T13:10:06.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Great Dreamer">
-<meta name="twitter:description" content="title: Inception Scorescategories: GAN date: 2017-10-28 10:31:36introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques for tra">
+<meta name="twitter:description" content="title: Inception Scorescategories: GAN date: 2017-10-28 10:31:36Introduction&amp;emsp;&amp;emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在Improved Techniques for tra">
+<meta name="twitter:image" content="http://yoursite.com/img/GAN/inception-fig1.PNG">
 
 
 
@@ -390,8 +393,18 @@
       
         <hr>
 <p>title: Inception Scores<br>categories: GAN</p>
-<h2 id="date-2017-10-28-10-31-36"><a href="#date-2017-10-28-10-31-36" class="headerlink" title="date: 2017-10-28 10:31:36"></a>date: 2017-10-28 10:31:36</h2><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><p>&emsp;&emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在<a href="https://arxiv.org/abs/1606.03498" target="_blank" rel="external">Improved Techniques for training GANs</a>这篇文章里提出，本篇文章主要将分析其计算原理和源代码。（<a href="https://github.com/openai/improved-gan" target="_blank" rel="external">源代码链接</a>）  </p>
-<h2 id="源代码分析"><a href="#源代码分析" class="headerlink" title="源代码分析"></a>源代码分析</h2><p><link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  </p>
+<h2 id="date-2017-10-28-10-31-36"><a href="#date-2017-10-28-10-31-36" class="headerlink" title="date: 2017-10-28 10:31:36"></a>date: 2017-10-28 10:31:36</h2><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>&emsp;&emsp;生成式模型的评价标准一直是个难题，比较常用的经典方法就是核密度估计方法，纵观近几年有关GAN的论文，inception score的方法越来越被大家所采用。此方法最早在<a href="https://arxiv.org/abs/1606.03498" target="_blank" rel="external">Improved Techniques for training GANs</a>这篇文章里提出，本篇文章主要将分析其计算原理和源代码。（<a href="https://github.com/openai/improved-gan" target="_blank" rel="external">源代码链接</a>）  </p>
+<h2 id="Defination"><a href="#Defination" class="headerlink" title="Defination"></a>Defination</h2><p>&emsp;&emsp;在<a href="https://arxiv.org/abs/1612.02136" target="_blank" rel="external">MODE REGULARIZED GENERATIVE ADVERSARIAL NETWORKS</a>这篇文章里，提到了inception的具体算法，公式如下：</p>
+<p><img src="/img/GAN/inception-fig1.PNG" alt="image">  </p>
+<ul>
+<li><p>公式说明：<br>x表示一个sample，p(y|x)表示的是带标签的训练好的分类器的softmax输出，p*(y)是全体label的分布.  </p>
+</li>
+<li><p>以下公式是DL距离：  </p>
+<p> <img src="/img/GAN/inception-fig2.PNG" alt="image">    </p>
+</li>
+</ul>
+<h2 id="源代码分析"><a href="#源代码分析" class="headerlink" title="源代码分析"></a>源代码分析</h2><p>&emsp;&emsp;以cifar-10数据集为例,来解析源代码。cifar-10 size：3<em>32</em>32 共50000张</p>
+<p><link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  </p>
 <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
 
 <script>hljs.initHighlightingOnLoad();</script>
@@ -407,29 +420,31 @@ def get_inception_score(images, splits=10):
   assert(np.min(images[0]) &gt;= 0.0)
   inps = []
   for img in images:
-    img = img.astype(np.float32)
-    inps.append(np.expand_dims(img, 0))
+    img = img.astype(np.float32) #转换成float32类型
+    #扩大一个轴0（扩大一个轴后的尺寸[1, 32, 32, 3]），加入到inps
+    inps.append(np.expand_dims(img, 0)) 
   bs = 100
   with tf.Session() as sess:
     preds = []
-    n_batches = int(math.ceil(float(len(inps)) / float(bs)))
+    n_batches = int(math.ceil(float(len(inps)) / float(bs))) 
     for i in range(n_batches):
         sys.stdout.write(&quot;.&quot;)
         sys.stdout.flush()
-        inp = inps[(i * bs):min((i + 1) * bs, len(inps))]
-        inp = np.concatenate(inp, 0)
+        inp = inps[(i * bs):min((i + 1) * bs, len(inps))] #取一个batch
+        inp = np.concatenate(inp, 0) #[100,1,32,32,3] -&gt; [100,32,32,3]
         pred = sess.run(softmax, {&apos;ExpandDims:0&apos;: inp})
         preds.append(pred)
-    preds = np.concatenate(preds, 0)
+    preds = np.concatenate(preds, 0) #拼接之后尺寸变为[50000,1008]
     scores = []
     for i in range(splits):
+      # 选取preds中的一部分
       part = preds[(i * preds.shape[0] // splits):((i + 1) * preds.shape[0] // splits), :]
+      # 求p(y|x)*(log(p(y|x))-log(p(y)))
       kl = part * (np.log(part) - np.log(np.expand_dims(np.mean(part, 0), 0)))
       kl = np.mean(np.sum(kl, 1))
       scores.append(np.exp(kl))
     return np.mean(scores), np.std(scores)
-</code></pre><p><code>hello</code></p>
-
+</code></pre>
       
     </div>
     
@@ -612,7 +627,7 @@ def get_inception_score(images, splits=10):
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#date-2017-10-28-10-31-36"><span class="nav-number">1.</span> <span class="nav-text">date: 2017-10-28 10:31:36</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码分析"><span class="nav-number">3.</span> <span class="nav-text">源代码分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#date-2017-10-28-10-31-36"><span class="nav-number">1.</span> <span class="nav-text">date: 2017-10-28 10:31:36</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Defination"><span class="nav-number">3.</span> <span class="nav-text">Defination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码分析"><span class="nav-number">4.</span> <span class="nav-text">源代码分析</span></a></li></ol></div>
             
 
           </div>

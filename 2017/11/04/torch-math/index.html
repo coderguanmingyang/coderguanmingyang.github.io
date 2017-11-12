@@ -95,13 +95,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="deep learning">
-<meta property="og:url" content="http://yoursite.com/deep-learning/index.html">
+<meta name="description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Torch-Math">
+<meta property="og:url" content="http://yoursite.com/2017/11/04/torch-math/index.html">
 <meta property="og:site_name" content="Great Dreamer">
-<meta property="og:updated_time" content="2017-09-06T06:53:02.935Z">
+<meta property="og:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
+<meta property="og:updated_time" content="2017-11-04T09:30:18.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="deep learning">
+<meta name="twitter:title" content="Torch-Math">
+<meta name="twitter:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
 
 
 
@@ -131,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/deep-learning/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/04/torch-math/"/>
 
 
 
 
 
-  <title>deep learning | Great Dreamer</title>
+  <title>Torch-Math | Great Dreamer</title>
   
 
 
@@ -282,33 +285,220 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/04/torch-math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingyang Guan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/people.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Great Dreamer">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">deep learning</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">Torch-Math</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-04T10:31:36+08:00">
+                2017-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Torch/" itemprop="url" rel="index">
+                    <span itemprop="name">Torch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>&emsp;&emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。<code>nn (neural network)</code>这个package是Torch中最核心的神经网络，本文将重点介绍这个package。<br><a href="https://github.com/torch/nn/blob/master/doc/index.md" target="_blank" rel="external">-&gt;更多信息请查看官方英文介绍</a>  </p>
+<h1 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h1><ol>
+<li><a href="#Module">Module</a></li>
+<li><a href="#Criterions">Criterions</a></li>
+<li><a href="#Convolution-layers">Convolution layers</a></li>
+<li><a href="#Matrix-wide">Matrix-wide</a><h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1></li>
+</ol>
+<h2 id="Matrix-wide-operations-Tensor-wide-operations"><a href="#Matrix-wide-operations-Tensor-wide-operations" class="headerlink" title="Matrix-wide operations (Tensor-wide operations) "></a><span id="Matrix-wide">Matrix-wide operations (Tensor-wide operations) </span></h2><h3 id="res-torch-log-res-x"><a href="#res-torch-log-res-x" class="headerlink" title="[res] torch.log([res,] x)"></a>[res] torch.log([res,] x)</h3><ul>
+<li><p>y = torch.log(x) returns a new Tensor with the natural logarithm of the elements of x.</p>
+</li>
+<li><p>x:log() replaces all elements in-place with the natural logarithm of the elements of x.</p>
+</li>
+</ul>
+<h3 id="torch-norm-x-p-dim"><a href="#torch-norm-x-p-dim" class="headerlink" title="torch.norm(x [,p] [,dim])"></a>torch.norm(x [,p] [,dim])</h3><ul>
+<li><p>y = torch.norm(x) returns the 2-norm of the Tensor x.</p>
+</li>
+<li><p>y = torch.norm(x, p) returns the p-norm of the Tensor x.</p>
+</li>
+<li><p>y = torch.norm(x, p, dim) returns the p-norms of the Tensor x computed over the dimension dim.  </p>
+</li>
+</ul>
+<h3 id="torch-gt-a-b"><a href="#torch-gt-a-b" class="headerlink" title="torch.gt(a, b)"></a>torch.gt(a, b)</h3><p>&emsp;&emsp;如果a对应元素大于b中的对应元素就返回1，否则返回0.  </p>
+<pre><code>th&gt; a = torch.Tensor(4)
+
+th&gt; a
+  2.1632e-27
+ 2.4324e+286
+ 1.0362e-259
+  2.9125e-14
+[torch.DoubleTensor of size 10]    
+
+th&gt; a:gt(1)
+ 0
+ 1
+ 0
+ 0
+[torch.ByteTensor of size 10]
+</code></pre>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/28/Inception_score/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -317,6 +507,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -337,8 +531,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -417,6 +620,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#menu"><span class="nav-number">2.</span> <span class="nav-text">menu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content"><span class="nav-number">3.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-wide-operations-Tensor-wide-operations"><span class="nav-number">3.1.</span> <span class="nav-text">Matrix-wide operations (Tensor-wide operations) </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#res-torch-log-res-x"><span class="nav-number">3.1.1.</span> <span class="nav-text">[res] torch.log([res,] x)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch-norm-x-p-dim"><span class="nav-number">3.1.2.</span> <span class="nav-text">torch.norm(x [,p] [,dim])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch-gt-a-b"><span class="nav-number">3.1.3.</span> <span class="nav-text">torch.gt(a, b)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -564,6 +783,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 

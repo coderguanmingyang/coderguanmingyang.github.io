@@ -101,12 +101,17 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/13/torch-nn/index.html">
 <meta property="og:site_name" content="Great Dreamer">
 <meta property="og:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
+<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-4.PNG">
+<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-1.PNG">
+<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-2.PNG">
+<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-5.PNG">
+<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-6.PNG">
 <meta property="og:image" content="http://yoursite.com/img/torch/nn/batchNormalization.PNG">
-<meta property="og:updated_time" content="2017-11-04T09:14:10.794Z">
+<meta property="og:updated_time" content="2017-12-13T06:32:59.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Torch-nn">
 <meta name="twitter:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
-<meta name="twitter:image" content="http://yoursite.com/img/torch/nn/batchNormalization.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-4.PNG">
 
 
 
@@ -420,17 +425,32 @@
 <li><a href="#Simple-layers">Simple layers</a><h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1></li>
 </ol>
 <h2 id="Module"><a href="#Module" class="headerlink" title=" Module "></a><span id="Module"> Module </span></h2><p>&emsp;&emsp;<code>Modules</code>是建造神经网络大厦的砖块。他们本身就是一个神经网络，而且可以使用containers来和别的神经网络结合构成更复杂的网络。<br>&emsp;&emsp;<code>Module</code>是个抽象类，定义了网络结构，它的最重要特点就是串行化的。<code>Module</code>有两个状态变量：output和gradInput。  </p>
-<h3 id="output-forward-input"><a href="#output-forward-input" class="headerlink" title="[output] forward(input)"></a>[output] forward(input)</h3><p>&emsp;&emsp;接受<code>input</code>，计算经过module对应的输出<code>output</code>。一般来讲，输入输出都是tensor。这个函数就是正向计算的过程，可以得到网络的输出。这个函数是不建议被重写的，其内部通过调用<strong><code>updateOutput(input)</code></strong>来实现的，这个函数是可以重写的。  </p>
-<h4 id="updateOutput-input"><a href="#updateOutput-input" class="headerlink" title="updateOutput(input)"></a>updateOutput(input)</h4><p>Computes the output using the current parameter set of the class and input. This function returns the result which is stored in the output field.  </p>
+<h3 id="output-forward-input"><a href="#output-forward-input" class="headerlink" title="[output] forward(input)"></a>[output] forward(input)</h3><p>&emsp;&emsp;接受<code>input</code>，计算经过module对应的输出<code>output</code>。一般来讲，输入输出都是tensor。这个函数就是正向计算的过程，可以得到网络的输出。    </p>
+<ul>
+<li>这个函数是不建议被重写的，其内部通过调用<code>updateOutput(input)</code>来实现的，这个函数是可以重写的。  </li>
+<li>经过foward()函数，该module的<code>output</code>就会被更新。  </li>
+</ul>
+<h4 id="updateOutput-input"><a href="#updateOutput-input" class="headerlink" title="updateOutput(input)"></a>updateOutput(input)</h4><p>使用当前的参数和输入<code>input</code>来计算输出<code>output</code>，存在<code>output</code></p>
 <h3 id="gradInput-backward-input-gradOutput"><a href="#gradInput-backward-input-gradOutput" class="headerlink" title="[gradInput] backward(input, gradOutput)"></a>[gradInput] backward(input, gradOutput)</h3><p>&emsp;&emsp;这个函数就是反向传播算法的具体体现，这个函数一般在forward函数调用之后发挥作用，<strong>而且对应相同的input</strong>。参数input和gradOutput一般来说都是tensor，但是也有特殊情况。这个函数内部主要调用两个函数：  </p>
-<p>&emsp;&emsp;<code>upgradeGradInput(input, gradOutput)</code>和<code>accGradParameters(input, gradOutput, scale)</code>  </p>
-<h4 id="updateGradInput-input-gradOutput"><a href="#updateGradInput-input-gradOutput" class="headerlink" title="updateGradInput(input, gradOutput)"></a>updateGradInput(input, gradOutput)</h4><p>&emsp;&emsp;Computing the gradient of the module with respect to its own input. This is returned in gradInput. Also, the gradInput state variable is updated accordingly.</p>
-<h4 id="accGradParameters-input-gradOutput-scale"><a href="#accGradParameters-input-gradOutput-scale" class="headerlink" title="accGradParameters[input, gradOutput, scale]"></a>accGradParameters[input, gradOutput, scale]</h4><p>&emsp;&emsp;这个函数计算相对该module参数的梯度。  </p>
+<p>&emsp;&emsp;<code>upgradeGradInput(input, gradOutput)</code>和<code>accGradParameters(input, gradOutput, scale)</code>    </p>
+<p>&emsp;<img src="./img/torch/nn/torch-nn-module-4.PNG" alt="image"></p>
+<h4 id="updateGradInput-input-gradOutput"><a href="#updateGradInput-input-gradOutput" class="headerlink" title="updateGradInput(input, gradOutput)"></a>updateGradInput(input, gradOutput)</h4><p>&emsp;&emsp;计算该层的gradInput(偏E/偏X), 输入为input(输入X）和gradOutput（偏E/偏Y）. 计算过程如下：  </p>
+<p>&emsp;<img src="./img/torch/nn/torch-nn-module-1.PNG" alt="image">  </p>
+<ul>
+<li>计算完之后，<code>gradInput</code>将会更新。</li>
+</ul>
+<h4 id="accGradParameters-input-gradOutput-scale"><a href="#accGradParameters-input-gradOutput-scale" class="headerlink" title="accGradParameters[input, gradOutput, scale]"></a>accGradParameters[input, gradOutput, scale]</h4><p>&emsp;&emsp;求该module的gradParameters(偏E/偏w)，并且累加。如果该层没有参数。就不会有这一步。  </p>
+<p>&emsp;<img src="./img/torch/nn/torch-nn-module-2.PNG" alt="image">  </p>
+<p>&emsp;&emsp;<strong>该过程中计算的梯度是累加的。</strong>    </p>
 <ol>
 <li>gradParameters：对该层参数的梯度，比如sigmoid层没有参数就没有该变量。  </li>
-<li>scale： gradParameters乘以系数scale，然后累加</li>
+<li>scale： gradParameters（偏E/偏w）乘以系数scale，然后累加，所以这个一般可以用来当学习率lr.</li>
 </ol>
-<p>&emsp;&emsp;– <strong>zeroGradParameters():</strong> 这个函数能够将参数的梯度设为0。<br>&emsp;&emsp;– <strong>updateParameters(learningRate):</strong> 这个函数就是按照学习率来更新参数。 </p>
+<h4 id="zeroGradParameters"><a href="#zeroGradParameters" class="headerlink" title="zeroGradParameters()"></a>zeroGradParameters()</h4><p>&emsp;&emsp;这个函数能够将参数的梯度（偏E/偏w）设为0。  </p>
+<p><img src="./img/torch/nn/torch-nn-module-5.PNG" alt="image">  </p>
+<h4 id="updateParameters-learningRate"><a href="#updateParameters-learningRate" class="headerlink" title="updateParameters(learningRate)"></a>updateParameters(learningRate)</h4><p>&emsp;&emsp;这个函数就是按照学习率来更新参数。  </p>
+<pre><code>parameters = parameters - learningRate * gradients_wrt_parameters 
+</code></pre><p><img src="./img/torch/nn/torch-nn-module-6.PNG" alt="image">   </p>
 <p>[flatParameters, flatGradParameters] getParameters()</p>
 <h2 id="2-Criterions"><a href="#2-Criterions" class="headerlink" title="2. Criterions "></a><span id="Criterions">2. Criterions </span></h2><p>&emsp;&emsp;这个主要提供了损失函数的类型。给定输入和目标，就能计算出损失和梯度。  </p>
 <h3 id="output-forward-input-target"><a href="#output-forward-input-target" class="headerlink" title="[output] forward(input, target)"></a>[output] forward(input, target)</h3><p>&emsp;&emsp;给定输入和目标，能够根据loss函数计算出损失值，output一般来讲是一个常数，输入一般是tensor。<br><strong>注意： 这里的“input”其实就是训练好的网络的输出，即预测值pred</strong>  </p>
@@ -467,7 +487,28 @@ model:backward(inputs, df_do)
 <li>padH: 在高度维度上对输入的planes加0的个数（默认为0，同样和padW参数具有相同意义）</li>
 </ul>
 <p>需要指出的是，如果想要查看这一层的参数，可以通过<code>wight</code>和<code>bias</code>得到，两者均为tensor。  </p>
+<h3 id="nn-SpatialFullConvolution"><a href="#nn-SpatialFullConvolution" class="headerlink" title="nn.SpatialFullConvolution"></a>nn.SpatialFullConvolution</h3><p><code>module = nn.SpatialFullConvolution(nInputPlane, nOutputPlane, kW, kH, [dW], [dH], [padW], [padH], [adjW], [adjH])</code>  </p>
+<p>Applies a 2D full convolution over an input image composed of several input planes. The input tensor in forward(input) is expected to be a 3D or 4D tensor. Note that instead of setting adjW and adjH, SpatialFullConvolution also accepts a table input with two tensors: {convInput, sizeTensor} where convInput is the standard input on which the full convolution is applied, and the size of sizeTensor is used to set the size of the output. Using the two-input version of forward will ignore the adjW and adjH values used to construct the module. The layer can be used without a bias by module:noBias().</p>
+<p>Other frameworks call this operation “In-network Upsampling”, “Fractionally-strided convolution”, “Backwards Convolution,” “Deconvolution”, or “Upconvolution.”</p>
+<p>The parameters are the following:</p>
+<ul>
+<li>nInputPlane: The number of expected input planes in the image given into forward().</li>
+<li>nOutputPlane: The number of output planes the convolution layer will produce.</li>
+<li>kW: The kernel width of the convolution</li>
+<li>kH: The kernel height of the convolution</li>
+<li>dW: The step of the convolution in the width dimension. Default is 1.</li>
+<li>dH: The step of the convolution in the height dimension. Default is 1.</li>
+<li>padW: Additional zeros added to the input plane data on both sides of width axis. Default is 0. (kW-1)/2 is often used here.</li>
+<li>padH: Additional zeros added to the input plane data on both sides of height axis. Default is 0. (kH-1)/2 is often used here.</li>
+<li>adjW: Extra width to add to the output image. Default is 0. Cannot be greater than dW-1.</li>
+<li>adjH: Extra height to add to the output image. Default is 0. Cannot be greater than dH-1.  </li>
+</ul>
+<p>If the input image is a 3D tensor <code>nInputPlane x height x width</code>, the output image size will be <code>nOutputPlane x oheight x owidth</code> where  </p>
+<pre><code>owidth  = (width  - 1) * dW - 2*padW + kW + adjW  
+oheight = (height - 1) * dH - 2*padH + kH + adjH
+</code></pre><p>  Further information about the full convolution can be found in the following paper: Fully Convolutional Networks for Semantic Segmentation.</p>
 <h3 id="nn-SpatialBatchNormalization"><a href="#nn-SpatialBatchNormalization" class="headerlink" title="nn.SpatialBatchNormalization"></a>nn.SpatialBatchNormalization</h3><p>&emsp;<code>module = nn.SpatialBatchNormalization(N [,eps] [, momentum] [,affine])</code>  </p>
+<p>这个函数负责对卷积层的输出进行正则化（即让输出满足一个标准正态分布），这样可以让大型卷积神经网络的训练速度加倍。  </p>
 <p>&emsp;&emsp;参数介绍如下:  </p>
 <ul>
 <li><strong>N</strong>: number of input feature maps.   </li>
@@ -655,7 +696,7 @@ y:fill(1) -- fill with 1
             
               <a href="/archives">
             
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -666,7 +707,7 @@ y:fill(1) -- fill with 1
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -726,7 +767,7 @@ y:fill(1) -- fill with 1
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#menu"><span class="nav-number">2.</span> <span class="nav-text">menu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content"><span class="nav-number">3.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-number">3.1.</span> <span class="nav-text"> Module </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#output-forward-input"><span class="nav-number">3.1.1.</span> <span class="nav-text">[output] forward(input)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#updateOutput-input"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">updateOutput(input)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gradInput-backward-input-gradOutput"><span class="nav-number">3.1.2.</span> <span class="nav-text">[gradInput] backward(input, gradOutput)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#updateGradInput-input-gradOutput"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">updateGradInput(input, gradOutput)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accGradParameters-input-gradOutput-scale"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">accGradParameters[input, gradOutput, scale]</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Criterions"><span class="nav-number">3.2.</span> <span class="nav-text">2. Criterions </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#output-forward-input-target"><span class="nav-number">3.2.1.</span> <span class="nav-text">[output] forward(input, target)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gradInput-backward-input-target"><span class="nav-number">3.2.2.</span> <span class="nav-text">[gradInput] backward(input, target)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-BCECriterion"><span class="nav-number">3.2.3.</span> <span class="nav-text">nn.BCECriterion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-MSECriterion"><span class="nav-number">3.2.4.</span> <span class="nav-text">nn.MSECriterion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-layers"><span class="nav-number">3.3.</span> <span class="nav-text">Convolution layers </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialConvolution"><span class="nav-number">3.3.1.</span> <span class="nav-text">nn.SpatialConvolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialBatchNormalization"><span class="nav-number">3.3.2.</span> <span class="nav-text">nn.SpatialBatchNormalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-layers"><span class="nav-number">3.4.</span> <span class="nav-text">Simple layers </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-View"><span class="nav-number">3.4.1.</span> <span class="nav-text">nn.View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WhiteNoise"><span class="nav-number">3.4.2.</span> <span class="nav-text">WhiteNoise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bilinear"><span class="nav-number">3.4.3.</span> <span class="nav-text">Bilinear</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-layers"><span class="nav-number">3.5.</span> <span class="nav-text">Table layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-ConcatTable"><span class="nav-number">3.5.1.</span> <span class="nav-text">nn.ConcatTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-CMulTable"><span class="nav-number">3.5.2.</span> <span class="nav-text">nn.CMulTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-CAddTable"><span class="nav-number">3.5.3.</span> <span class="nav-text">nn.CAddTable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Function-Layers"><span class="nav-number">3.6.</span> <span class="nav-text">Transfer Function Layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-MulConstant"><span class="nav-number">3.6.1.</span> <span class="nav-text">nn.MulConstant</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor"><span class="nav-number">3.7.</span> <span class="nav-text">Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#self-apply-function"><span class="nav-number">3.7.1.</span> <span class="nav-text">[self] apply(function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-narrow-dim-index-size"><span class="nav-number">3.7.2.</span> <span class="nav-text">[self] narrow(dim, index, size)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#menu"><span class="nav-number">2.</span> <span class="nav-text">menu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content"><span class="nav-number">3.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-number">3.1.</span> <span class="nav-text"> Module </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#output-forward-input"><span class="nav-number">3.1.1.</span> <span class="nav-text">[output] forward(input)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#updateOutput-input"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">updateOutput(input)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gradInput-backward-input-gradOutput"><span class="nav-number">3.1.2.</span> <span class="nav-text">[gradInput] backward(input, gradOutput)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#updateGradInput-input-gradOutput"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">updateGradInput(input, gradOutput)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accGradParameters-input-gradOutput-scale"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">accGradParameters[input, gradOutput, scale]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zeroGradParameters"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">zeroGradParameters()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#updateParameters-learningRate"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">updateParameters(learningRate)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Criterions"><span class="nav-number">3.2.</span> <span class="nav-text">2. Criterions </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#output-forward-input-target"><span class="nav-number">3.2.1.</span> <span class="nav-text">[output] forward(input, target)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gradInput-backward-input-target"><span class="nav-number">3.2.2.</span> <span class="nav-text">[gradInput] backward(input, target)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-BCECriterion"><span class="nav-number">3.2.3.</span> <span class="nav-text">nn.BCECriterion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-MSECriterion"><span class="nav-number">3.2.4.</span> <span class="nav-text">nn.MSECriterion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-layers"><span class="nav-number">3.3.</span> <span class="nav-text">Convolution layers </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialConvolution"><span class="nav-number">3.3.1.</span> <span class="nav-text">nn.SpatialConvolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialFullConvolution"><span class="nav-number">3.3.2.</span> <span class="nav-text">nn.SpatialFullConvolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-SpatialBatchNormalization"><span class="nav-number">3.3.3.</span> <span class="nav-text">nn.SpatialBatchNormalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-layers"><span class="nav-number">3.4.</span> <span class="nav-text">Simple layers </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-View"><span class="nav-number">3.4.1.</span> <span class="nav-text">nn.View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WhiteNoise"><span class="nav-number">3.4.2.</span> <span class="nav-text">WhiteNoise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bilinear"><span class="nav-number">3.4.3.</span> <span class="nav-text">Bilinear</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-layers"><span class="nav-number">3.5.</span> <span class="nav-text">Table layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-ConcatTable"><span class="nav-number">3.5.1.</span> <span class="nav-text">nn.ConcatTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-CMulTable"><span class="nav-number">3.5.2.</span> <span class="nav-text">nn.CMulTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-CAddTable"><span class="nav-number">3.5.3.</span> <span class="nav-text">nn.CAddTable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Function-Layers"><span class="nav-number">3.6.</span> <span class="nav-text">Transfer Function Layers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-MulConstant"><span class="nav-number">3.6.1.</span> <span class="nav-text">nn.MulConstant</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor"><span class="nav-number">3.7.</span> <span class="nav-text">Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#self-apply-function"><span class="nav-number">3.7.1.</span> <span class="nav-text">[self] apply(function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-narrow-dim-index-size"><span class="nav-number">3.7.2.</span> <span class="nav-text">[self] narrow(dim, index, size)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

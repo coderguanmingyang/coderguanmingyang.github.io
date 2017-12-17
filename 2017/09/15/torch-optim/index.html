@@ -101,12 +101,14 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/15/torch-optim/index.html">
 <meta property="og:site_name" content="Great Dreamer">
 <meta property="og:description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
+<meta property="og:image" content="http://yoursite.com/2017/09/15/torch-optim/img/torch/optim/sgd1.PNG">
+<meta property="og:image" content="http://yoursite.com/2017/09/15/torch-optim/img/torch/optim/sgd2.PNG">
 <meta property="og:image" content="http://yoursite.com/img/torch/optim/adam.PNG">
-<meta property="og:updated_time" content="2017-10-12T06:42:25.964Z">
+<meta property="og:updated_time" content="2017-12-13T11:33:44.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Torch-Optim">
 <meta name="twitter:description" content="Overview&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者，在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。optim这个package是Torch中有关优化训练网络，本文将重点介绍这个package。-&amp;g">
-<meta name="twitter:image" content="http://yoursite.com/img/torch/optim/adam.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/15/torch-optim/img/torch/optim/sgd1.PNG">
 
 
 
@@ -436,7 +438,9 @@ for i, sample in ipairs(training_samples) do
     end
     optim.sgd(func, x, config)
 end
-</code></pre><h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="optim-adam-opfunc-x-config-state"><a href="#optim-adam-opfunc-x-config-state" class="headerlink" title="optim.adam(opfunc, x[, config][, state])"></a>optim.adam(opfunc, x[, config][, state])</h2><p>&emsp;&emsp;Adam(Adaptive Moment Estimation)本质上是带有动量项的RMSprop，它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。参数介绍：  </p>
+</code></pre><p>&emsp;&emsp;<strong>以下是optim.sgd的源码：</strong>  </p>
+<p><img src="./img/torch/optim/sgd1.PNG" alt="image"><br><img src="./img/torch/optim/sgd2.PNG" alt="image"></p>
+<h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="optim-adam-opfunc-x-config-state"><a href="#optim-adam-opfunc-x-config-state" class="headerlink" title="optim.adam(opfunc, x[, config][, state])"></a>optim.adam(opfunc, x[, config][, state])</h2><p>&emsp;&emsp;Adam(Adaptive Moment Estimation)本质上是带有动量项的RMSprop，它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。参数介绍：  </p>
 <ul>
 <li><strong>config</strong>: a table with configuration parameters for the optimizer</li>
 <li><strong>config.learningRate</strong>: learning rate</li>
@@ -502,8 +506,8 @@ custom string, one can also pass custom strings to use full capability of gnuplo
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/16/kiter/" rel="prev" title="他不是我的朋友!">
-                他不是我的朋友! <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/16/lua-table/" rel="prev" title="Lua-table">
+                Lua-table <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +588,7 @@ custom string, one can also pass custom strings to use full capability of gnuplo
             
               <a href="/archives">
             
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -595,7 +599,7 @@ custom string, one can also pass custom strings to use full capability of gnuplo
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>

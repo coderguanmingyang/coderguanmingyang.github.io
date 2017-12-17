@@ -101,17 +101,17 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/13/torch-nn/index.html">
 <meta property="og:site_name" content="Great Dreamer">
 <meta property="og:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
-<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-4.PNG">
-<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-1.PNG">
-<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-2.PNG">
-<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-5.PNG">
-<meta property="og:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-6.PNG">
+<meta property="og:image" content="http://yoursite.com/img/torch/nn/torch-nn-module-4.PNG">
+<meta property="og:image" content="http://yoursite.com/img/torch/nn/torch-nn-module-1.PNG">
+<meta property="og:image" content="http://yoursite.com/img/torch/nn/torch-nn-module-2.PNG">
+<meta property="og:image" content="http://yoursite.com/img/torch/nn/torch-nn-module-5.PNG">
+<meta property="og:image" content="http://yoursite.com/img/torch/nn/torch-nn-module-6.PNG">
 <meta property="og:image" content="http://yoursite.com/img/torch/nn/batchNormalization.PNG">
-<meta property="og:updated_time" content="2017-12-13T06:32:59.839Z">
+<meta property="og:updated_time" content="2017-12-17T09:38:34.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Torch-nn">
 <meta name="twitter:description" content="Introduction&amp;emsp;&amp;emsp;Torch深度学习框架是基于lua语言的，lua语言是一款小众的脚本语言。torch框架目前应该说比较受研究者的重视，尤其是当今AI界领头羊之一的Facebook的推崇。笔者在阅读一些论文时，发现其公布的源码很多使用了Torch，所以就开始学起了Torch。nn (neural network)这个package是Torch中最核心的神经网络，本文将">
-<meta name="twitter:image" content="http://yoursite.com/2017/09/13/torch-nn/img/torch/nn/torch-nn-module-4.PNG">
+<meta name="twitter:image" content="http://yoursite.com/img/torch/nn/torch-nn-module-4.PNG">
 
 
 
@@ -433,24 +433,24 @@
 <h4 id="updateOutput-input"><a href="#updateOutput-input" class="headerlink" title="updateOutput(input)"></a>updateOutput(input)</h4><p>使用当前的参数和输入<code>input</code>来计算输出<code>output</code>，存在<code>output</code></p>
 <h3 id="gradInput-backward-input-gradOutput"><a href="#gradInput-backward-input-gradOutput" class="headerlink" title="[gradInput] backward(input, gradOutput)"></a>[gradInput] backward(input, gradOutput)</h3><p>&emsp;&emsp;这个函数就是反向传播算法的具体体现，这个函数一般在forward函数调用之后发挥作用，<strong>而且对应相同的input</strong>。参数input和gradOutput一般来说都是tensor，但是也有特殊情况。这个函数内部主要调用两个函数：  </p>
 <p>&emsp;&emsp;<code>upgradeGradInput(input, gradOutput)</code>和<code>accGradParameters(input, gradOutput, scale)</code>    </p>
-<p>&emsp;<img src="./img/torch/nn/torch-nn-module-4.PNG" alt="image"></p>
+<p>&emsp;<img src="/img/torch/nn/torch-nn-module-4.PNG" alt="image"></p>
 <h4 id="updateGradInput-input-gradOutput"><a href="#updateGradInput-input-gradOutput" class="headerlink" title="updateGradInput(input, gradOutput)"></a>updateGradInput(input, gradOutput)</h4><p>&emsp;&emsp;计算该层的gradInput(偏E/偏X), 输入为input(输入X）和gradOutput（偏E/偏Y）. 计算过程如下：  </p>
-<p>&emsp;<img src="./img/torch/nn/torch-nn-module-1.PNG" alt="image">  </p>
+<p>&emsp;<img src="/img/torch/nn/torch-nn-module-1.PNG" alt="image">  </p>
 <ul>
 <li>计算完之后，<code>gradInput</code>将会更新。</li>
 </ul>
 <h4 id="accGradParameters-input-gradOutput-scale"><a href="#accGradParameters-input-gradOutput-scale" class="headerlink" title="accGradParameters[input, gradOutput, scale]"></a>accGradParameters[input, gradOutput, scale]</h4><p>&emsp;&emsp;求该module的gradParameters(偏E/偏w)，并且累加。如果该层没有参数。就不会有这一步。  </p>
-<p>&emsp;<img src="./img/torch/nn/torch-nn-module-2.PNG" alt="image">  </p>
+<p>&emsp;<img src="/img/torch/nn/torch-nn-module-2.PNG" alt="image">  </p>
 <p>&emsp;&emsp;<strong>该过程中计算的梯度是累加的。</strong>    </p>
 <ol>
 <li>gradParameters：对该层参数的梯度，比如sigmoid层没有参数就没有该变量。  </li>
 <li>scale： gradParameters（偏E/偏w）乘以系数scale，然后累加，所以这个一般可以用来当学习率lr.</li>
 </ol>
 <h4 id="zeroGradParameters"><a href="#zeroGradParameters" class="headerlink" title="zeroGradParameters()"></a>zeroGradParameters()</h4><p>&emsp;&emsp;这个函数能够将参数的梯度（偏E/偏w）设为0。  </p>
-<p><img src="./img/torch/nn/torch-nn-module-5.PNG" alt="image">  </p>
+<p><img src="/img/torch/nn/torch-nn-module-5.PNG" alt="image">  </p>
 <h4 id="updateParameters-learningRate"><a href="#updateParameters-learningRate" class="headerlink" title="updateParameters(learningRate)"></a>updateParameters(learningRate)</h4><p>&emsp;&emsp;这个函数就是按照学习率来更新参数。  </p>
 <pre><code>parameters = parameters - learningRate * gradients_wrt_parameters 
-</code></pre><p><img src="./img/torch/nn/torch-nn-module-6.PNG" alt="image">   </p>
+</code></pre><p><img src="/img/torch/nn/torch-nn-module-6.PNG" alt="image">   </p>
 <p>[flatParameters, flatGradParameters] getParameters()</p>
 <h2 id="2-Criterions"><a href="#2-Criterions" class="headerlink" title="2. Criterions "></a><span id="Criterions">2. Criterions </span></h2><p>&emsp;&emsp;这个主要提供了损失函数的类型。给定输入和目标，就能计算出损失和梯度。  </p>
 <h3 id="output-forward-input-target"><a href="#output-forward-input-target" class="headerlink" title="[output] forward(input, target)"></a>[output] forward(input, target)</h3><p>&emsp;&emsp;给定输入和目标，能够根据loss函数计算出损失值，output一般来讲是一个常数，输入一般是tensor。<br><strong>注意： 这里的“input”其实就是训练好的网络的输出，即预测值pred</strong>  </p>
@@ -604,8 +604,8 @@ y:fill(1) -- fill with 1
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/10/auto-encoder/" rel="next" title="Auto-encoder">
-                <i class="fa fa-chevron-left"></i> Auto-encoder
+              <a href="/2017/09/13/torch-nn-transferFun/" rel="next" title="Torch-nn-Transfer function">
+                <i class="fa fa-chevron-left"></i> Torch-nn-Transfer function
               </a>
             
           </div>
@@ -614,8 +614,8 @@ y:fill(1) -- fill with 1
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/13/torch-nn-transferFun/" rel="prev" title="Torch-nn-Transfer function">
-                Torch-nn-Transfer function <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/15/torch-optim/" rel="prev" title="Torch-Optim">
+                Torch-Optim <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

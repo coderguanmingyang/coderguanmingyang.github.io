@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="Overview&amp;emsp;&amp;emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。&amp;emsp;&amp;emsp; 聚类算法原文链接：用于数据挖掘的聚类算法有哪些，各有何优势？">
+<meta name="description" content="Overview&amp;emsp;&amp;emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。&amp;emsp;&amp;emsp; 聚类算法参考原文链接：【知乎】用于数据挖掘的聚类算法有哪些，各有何优势？ 聚类和分类的区别 聚类：将相似的东西分到一组，只关心元素间的相似性，并不关心某一类具体是什么，所以最关键的就是找到合适的相似性度量，不需要标签作为分类标准，这被称为是无监督学习。     分类：训练一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Basic knowledge in ML">
 <meta property="og:url" content="http://yoursite.com/2018/04/03/interview/index.html">
 <meta property="og:site_name" content="Great Dreamer">
-<meta property="og:description" content="Overview&amp;emsp;&amp;emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。&amp;emsp;&amp;emsp; 聚类算法原文链接：用于数据挖掘的聚类算法有哪些，各有何优势？">
-<meta property="og:updated_time" content="2018-04-02T11:10:11.005Z">
+<meta property="og:description" content="Overview&amp;emsp;&amp;emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。&amp;emsp;&amp;emsp; 聚类算法参考原文链接：【知乎】用于数据挖掘的聚类算法有哪些，各有何优势？ 聚类和分类的区别 聚类：将相似的东西分到一组，只关心元素间的相似性，并不关心某一类具体是什么，所以最关键的就是找到合适的相似性度量，不需要标签作为分类标准，这被称为是无监督学习。     分类：训练一">
+<meta property="og:updated_time" content="2018-04-02T12:31:48.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Basic knowledge in ML">
-<meta name="twitter:description" content="Overview&amp;emsp;&amp;emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。&amp;emsp;&amp;emsp; 聚类算法原文链接：用于数据挖掘的聚类算法有哪些，各有何优势？">
+<meta name="twitter:description" content="Overview&amp;emsp;&amp;emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。&amp;emsp;&amp;emsp; 聚类算法参考原文链接：【知乎】用于数据挖掘的聚类算法有哪些，各有何优势？ 聚类和分类的区别 聚类：将相似的东西分到一组，只关心元素间的相似性，并不关心某一类具体是什么，所以最关键的就是找到合适的相似性度量，不需要标签作为分类标准，这被称为是无监督学习。     分类：训练一">
 
 
 
@@ -411,7 +411,27 @@
 
       
         <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>&emsp;&emsp;这里主要收录了一些机器学习领域的基础知识，以备平时复习使用。<br>&emsp;&emsp;</p>
-<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><p><a href="https://www.zhihu.com/question/34554321" target="_blank" rel="external">原文链接：用于数据挖掘的聚类算法有哪些，各有何优势？</a></p>
+<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><p><a href="https://www.zhihu.com/question/34554321" target="_blank" rel="external">参考原文链接：【知乎】用于数据挖掘的聚类算法有哪些，各有何优势？</a></p>
+<h3 id="聚类和分类的区别"><a href="#聚类和分类的区别" class="headerlink" title="聚类和分类的区别"></a>聚类和分类的区别</h3><ul>
+<li>聚类：将相似的东西分到一组，只关心元素间的相似性，并不关心某一类具体是什么，所以最关键的就是找到合适的<strong>相似性度量</strong>，不需要<strong>标签</strong>作为分类标准，这被称为是无监督学习。    </li>
+<li>分类：训练一个分类器，通常需要知道训练数据的<strong>标签</strong>，这样才能针对性地训练，这就是监督学习。  </li>
+</ul>
+<h3 id="聚类过程"><a href="#聚类过程" class="headerlink" title="聚类过程"></a>聚类过程</h3><ul>
+<li>数据准备：包括特征标准化和降维；</li>
+<li>特征选择：从最初的特征中选择最有效的特征,并将其存储于向量中；</li>
+<li>特征提取：通过对所选择的特征进行转换形成新的突出特征；</li>
+<li>聚类(或分组)：首先选择合适特征类型的某种距离函数(或构造新的距离函数)进行接近程度的度量，而后执行聚类或分组；</li>
+<li>聚类结果评估：是指对聚类结果进行评估，评估主要有3种：外部有效性评估、内部有效性评估和相关性测试评估。</li>
+</ul>
+<h3 id="聚类方法的分类"><a href="#聚类方法的分类" class="headerlink" title="聚类方法的分类"></a>聚类方法的分类</h3><h4 id="划分式聚类算法"><a href="#划分式聚类算法" class="headerlink" title="划分式聚类算法"></a>划分式聚类算法</h4><p>&emsp;&emsp;预先指定聚类数目或聚类中心，反复迭代逐步降低目标函数误差值直至收敛，得到最终结果。K-means,K-modes-Huang,K-means-CP,MDS_CLUSTER, Feature weighted fuzzy clustering，CLARANS等.  </p>
+<p>经典K-means算法流程： </p>
+<ol>
+<li>随机地选择k个对象，每个对象初始地代表了一个簇的中心；  </li>
+<li>对剩余的每个对象，根据其与各簇中心的距离，将它赋给最近的簇；  </li>
+<li>重新计算每个簇的平均值，更新为新的簇中心；  </li>
+<li>不断重复2、3，直到准则函数收敛。  </li>
+</ol>
+<h4 id="层次聚类化方法"><a href="#层次聚类化方法" class="headerlink" title="层次聚类化方法"></a>层次聚类化方法</h4><p>&emsp;&emsp;又称树聚类算法，透过一种层次架构方式，反复将数据进行分裂或聚合。典型的有BIRCH算法，CURE算法，CHAMELEON算法，Sequence data rough clustering算法。</p>
 
       
     </div>
@@ -445,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/17/ML-ensemble/" rel="prev" title="machine learning Ensemble">
+                machine learning Ensemble <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -524,7 +548,7 @@
             
               <a href="/archives">
             
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -595,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚类算法"><span class="nav-number">2.</span> <span class="nav-text">聚类算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚类算法"><span class="nav-number">2.</span> <span class="nav-text">聚类算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#聚类和分类的区别"><span class="nav-number">2.1.</span> <span class="nav-text">聚类和分类的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚类过程"><span class="nav-number">2.2.</span> <span class="nav-text">聚类过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚类方法的分类"><span class="nav-number">2.3.</span> <span class="nav-text">聚类方法的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#划分式聚类算法"><span class="nav-number">2.3.1.</span> <span class="nav-text">划分式聚类算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层次聚类化方法"><span class="nav-number">2.3.2.</span> <span class="nav-text">层次聚类化方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

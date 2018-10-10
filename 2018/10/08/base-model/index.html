@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Research," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -95,17 +95,20 @@
 
 
 
-<meta name="description" content="Research Diary  2017/9/7    实现上周目标：    加入Apple提出的缓冲区策略。 结果：较早的进入到一方比较强势的状态，并没有太大提高。    改进方向：    将网络改成全卷积网络。 D网络的多维输出，即每块代表不同patch的真实性概率。 尝试大尺寸数据集    eassy">
-<meta name="keywords" content="Research">
+<meta name="description" content="BASE MODELSDenseNet在谈denseNet前，首先了解一下dense block。Figure.1展示了一个含有5层的dense block。dense block 主要包含以下几个要素：   Dense connectivity稠密连接就是在第l层feature maps Xl的输入是前面所有层的feature maps 的连接。公式1：XL = Hl([X0,X1,…,XL-1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Research Diary">
-<meta property="og:url" content="http://yoursite.com/2017/09/07/Research Diary/index.html">
+<meta property="og:title" content="Great Dreamer">
+<meta property="og:url" content="http://yoursite.com/2018/10/08/base-model/index.html">
 <meta property="og:site_name" content="Great Dreamer">
-<meta property="og:description" content="Research Diary  2017/9/7    实现上周目标：    加入Apple提出的缓冲区策略。 结果：较早的进入到一方比较强势的状态，并没有太大提高。    改进方向：    将网络改成全卷积网络。 D网络的多维输出，即每块代表不同patch的真实性概率。 尝试大尺寸数据集    eassy">
-<meta property="og:updated_time" content="2017-09-07T08:21:03.083Z">
+<meta property="og:description" content="BASE MODELSDenseNet在谈denseNet前，首先了解一下dense block。Figure.1展示了一个含有5层的dense block。dense block 主要包含以下几个要素：   Dense connectivity稠密连接就是在第l层feature maps Xl的输入是前面所有层的feature maps 的连接。公式1：XL = Hl([X0,X1,…,XL-1">
+<meta property="og:image" content="http://yoursite.com/2018/10/08/base-model/img/base-model/dense-block.JPG">
+<meta property="og:image" content="http://yoursite.com/2018/10/08/base-model/img/base-model/denseNet.JPG">
+<meta property="og:image" content="http://yoursite.com/2018/10/08/base-model/img/base-model/denseNet-architecture.JPG">
+<meta property="og:updated_time" content="2018-10-09T14:46:36.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Research Diary">
-<meta name="twitter:description" content="Research Diary  2017/9/7    实现上周目标：    加入Apple提出的缓冲区策略。 结果：较早的进入到一方比较强势的状态，并没有太大提高。    改进方向：    将网络改成全卷积网络。 D网络的多维输出，即每块代表不同patch的真实性概率。 尝试大尺寸数据集    eassy">
+<meta name="twitter:title" content="Great Dreamer">
+<meta name="twitter:description" content="BASE MODELSDenseNet在谈denseNet前，首先了解一下dense block。Figure.1展示了一个含有5层的dense block。dense block 主要包含以下几个要素：   Dense connectivity稠密连接就是在第l层feature maps Xl的输入是前面所有层的feature maps 的连接。公式1：XL = Hl([X0,X1,…,XL-1">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/08/base-model/img/base-model/dense-block.JPG">
 
 
 
@@ -135,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/07/Research Diary/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/08/base-model/"/>
 
 
 
 
 
-  <title>Research Diary | Great Dreamer</title>
+  <title> | Great Dreamer</title>
   
 
 
@@ -298,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/07/Research Diary/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/08/base-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mingyang Guan">
@@ -315,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Research Diary</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -327,8 +330,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-07T15:05:23+08:00">
-                2017-09-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-08T14:56:11+08:00">
+                2018-10-08
               </time>
             
 
@@ -337,28 +340,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -411,21 +392,14 @@
       
 
       
-        <h1 id="Research-Diary"><a href="#Research-Diary" class="headerlink" title="Research Diary"></a>Research Diary</h1><hr>
-<blockquote>
-<p>2017/9/7  </p>
-</blockquote>
-<p>实现上周目标：  </p>
-<ol>
-<li>加入Apple提出的缓冲区策略。 结果：较早的进入到一方比较强势的状态，并没有太大提高。  </li>
-</ol>
-<p>改进方向：  </p>
-<ol>
-<li>将网络改成全卷积网络。</li>
-<li>D网络的多维输出，即每块代表不同patch的真实性概率。</li>
-<li>尝试大尺寸数据集  </li>
-</ol>
-<p><a href="/categories/Diary/index.html">eassy</a></p>
+        <h1 id="BASE-MODELS"><a href="#BASE-MODELS" class="headerlink" title="BASE MODELS"></a>BASE MODELS</h1><h2 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h2><p>在谈denseNet前，首先了解一下dense block。Figure.1展示了一个含有5层的dense block。dense block 主要包含以下几个要素：  </p>
+<h3 id="Dense-connectivity"><a href="#Dense-connectivity" class="headerlink" title="Dense connectivity"></a>Dense connectivity</h3><p>稠密连接就是在第<em>l</em>层feature maps X<sub><em>l</em></sub>的输入是前面所有层的feature maps 的连接。<br>公式1：X<sub>L</sub> = H<sub>l</sub>([X<sub>0</sub>,X<sub>1</sub>,…,X<sub>L-1</sub>])</p>
+<p>其中，H函数一般由BN-ReLU-Conv(3<em>3)三种操作来构成。<br>这里面有一个growth rate的概念，每个H函数输出的feature maps均为K个channels。这样，第L层H函数的输入就是含有K<sub>0</sub>+K </em> (L-1)个channel。</p>
+<p><img src=".\img\base-model\dense-block.JPG" alt="image"></p>
+<h3 id="Bottleneck-layers"><a href="#Bottleneck-layers" class="headerlink" title="Bottleneck layers"></a>Bottleneck layers</h3><p>虽然每层的输出只有K个feature map，但是累积到后来的层的<strong>输入</strong>就会很多，为此引入Bottleneck layers，则H函数变为<br><strong>BN−&gt;ReLU−&gt;Conv(1×1)−&gt;BN−&gt;ReLU−&gt;Conv(3×3)</strong><br>1*1的filter一般作为降低或者升高维度（channel）的作用，所以叫做bottleneck layers。<br>文中将带有bottleneck layers的网络结构叫做DenseNet-BC。</p>
+<h3 id="Compression"><a href="#Compression" class="headerlink" title="Compression"></a>Compression</h3><p>To further improve model compactness, we can reduce the number of feature-maps at <strong>transition layers</strong>.<br>如果dense block 的输出有m个channels，那么通过transition layers 就可以得到⌊θm⌋，其中θ小于1.对于含有这样操作的网络结构成为denseNet-C.<br>同时含有bottleneck和compression的网络结构用denseNet-BC来表示。<br>compression是在dense block 外部实施的，Figure.2展示的就是整个网络的过程。</p>
+<p><img src=".\img\base-model\denseNet.JPG" alt="image"></p>
+<h3 id="architecture"><a href="#architecture" class="headerlink" title="architecture"></a>architecture</h3><p>下图展示的就是densenet-BC的结构（imageNet）：<br><img src=".\img\base-model\denseNet-architecture.JPG" alt="image"></p>
 
       
     </div>
@@ -441,12 +415,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Research/" rel="tag"># Research</a>
-          
-        </div>
-      
 
       
       
@@ -456,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/05/my-first-github-pages/" rel="next" title="My First github pages">
-                <i class="fa fa-chevron-left"></i> My First github pages
+              <a href="/2018/06/17/ML-ensemble/" rel="next" title="machine learning Ensemble">
+                <i class="fa fa-chevron-left"></i> machine learning Ensemble
               </a>
             
           </div>
@@ -465,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/07/git/" rel="prev" title="Git">
-                Git <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -619,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Research-Diary"><span class="nav-number">1.</span> <span class="nav-text">Research Diary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BASE-MODELS"><span class="nav-number">1.</span> <span class="nav-text">BASE MODELS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DenseNet"><span class="nav-number">1.1.</span> <span class="nav-text">DenseNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dense-connectivity"><span class="nav-number">1.1.1.</span> <span class="nav-text">Dense connectivity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottleneck-layers"><span class="nav-number">1.1.2.</span> <span class="nav-text">Bottleneck layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compression"><span class="nav-number">1.1.3.</span> <span class="nav-text">Compression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#architecture"><span class="nav-number">1.1.4.</span> <span class="nav-text">architecture</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/08/base-model/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/10/base-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mingyang Guan">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/08/base-model/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/10/10/base-model/" itemprop="url">BASE MODELS</a></h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-08T14:56:11+08:00">
-                2018-10-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-10T16:31:07+08:00">
+                2018-10-10
               </time>
             
 
@@ -335,6 +335,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML/" itemprop="url" rel="index">
+                    <span itemprop="name">ML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -384,13 +406,14 @@
       
         
           
-          BASE MODELSDenseNet在谈denseNet前，首先了解一下dense block。Figure.1展示了一个含有5层的dense block。dense block 主要包含以下几个要素：  
+          by Mingyang Guan2017/9/10 16:36:22  
+BASE MODELSDenseNet在谈denseNet前，首先了解一下dense block。Figure.1展示了一个含有5层的dense block。dense block 主要包含以下几个要素：  
 Dense connectivity稠密连接就是在第l层feature maps Xl的输入是前面所有层的feature maps 的连接。公式1：XL = Hl([X0,X1,…,XL-1])
-其中，H函数一般由BN-ReLU-Conv(33)三种操作来构成。这里面有一个growth rate的概念，每个H函数输出的feature maps均为K个channels。这样，第L层H函数的
+其中，H函数一般由BN-ReLU-Conv(33)三种操作来构成。这里面有一个growth rate的概念，每个H函数输
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/08/base-model/#more" rel="contents">
+            <a class="btn" href="/2018/10/10/base-model/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1125,6 +1148,178 @@ Functiontorchvision.datasetstorchvision.models&emsp;&emsp;目前，models模块�
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/28/torch-Threads/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingyang Guan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/people.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Great Dreamer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/28/torch-Threads/" itemprop="url">Torch-Threads</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-28T12:11:36+08:00">
+                2018-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Torch/" itemprop="url" rel="index">
+                    <span itemprop="name">Torch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Overview&emsp;&emsp;这篇文章将介绍torch中的threads模块。&emsp;&emsp;-&gt;更多信息请查看官方英文介绍  
+Installation`luarocks install threads`  
+Functionthreads.Threads(N,[f1,f2,…])
+N: 线程队列里产生的线程数。
+f1, f2:在每个线程都会执行的函数。每个函数都会有个参数threadid，这个数字就是在1和N之间的，用来唯一标识每个线程。[Attention！]这里面的函数在定义时如果使用了别的包，需要额外写一个函数包含进去。比如，下面的例子，将’nn’包导入。
+r
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/28/torch-Threads/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/28/torch-Tensor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1250,178 +1445,6 @@ x = torch.rand(5,5)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/28/torch-Tensor/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/28/torch-Threads/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingyang Guan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/people.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Great Dreamer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/28/torch-Threads/" itemprop="url">Torch-Threads</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-28T12:11:36+08:00">
-                2018-01-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Torch/" itemprop="url" rel="index">
-                    <span itemprop="name">Torch</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Overview&emsp;&emsp;这篇文章将介绍torch中的threads模块。&emsp;&emsp;-&gt;更多信息请查看官方英文介绍  
-Installation`luarocks install threads`  
-Functionthreads.Threads(N,[f1,f2,…])
-N: 线程队列里产生的线程数。
-f1, f2:在每个线程都会执行的函数。每个函数都会有个参数threadid，这个数字就是在1和N之间的，用来唯一标识每个线程。[Attention！]这里面的函数在定义时如果使用了别的包，需要额外写一个函数包含进去。比如，下面的例子，将’nn’包导入。
-r
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/28/torch-Threads/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
